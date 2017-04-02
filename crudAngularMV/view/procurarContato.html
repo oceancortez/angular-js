@@ -1,0 +1,50 @@
+ <form>
+                <div class="col-sm-9">
+                <div class="form-group">
+                  <div class="col-sm-offset-1 col-sm-10">
+
+                  <label for="nome">Procurar pelo ID</label>
+                  <input type="text" class="form-control" id="nome" placeholder="Id do Contato" ng-model="contatoOne.id">
+                    <br/>
+                    <button type="submit" class="btn btn-danger btn-lg btn-block" 
+                   
+                     data-ng-click="findOneClick('contatoOne.id')"
+                     ng-disabled="!(contatoOne.id)">Procurar?</button>
+
+                    <button class="btn btn-default btn-lg btn-block" 
+                    onclick="document.location.hash = '#/lista'">Cancelar</button>                 
+                     
+                  </div>
+                </div>
+              </div>
+    </form>       
+
+
+    <div class="panel-body">
+        <table class="table table-striped" data-ng-if="showContato">
+        <tr>
+          <th>ID</th>
+          <th>Nome</th>
+          <th>Endereço</th>
+          <th>Data de Nascimento</th>
+          <th>Telefone</th>
+          <th>Sexo</th>
+          <th>Reclamação</th>
+          <th></th>
+        </tr>
+        <tr ng-repeat="contato in listaContato">
+          <td>{{contato.id}}</td> 
+          <td>{{contato.nome}}</td>
+          <td>{{contato.endereco}}</td>
+          <td>{{contato.dtNascimento| date : "dd/MM/yyyy"}}</td>
+          <td>{{contato.telefone}}</td>
+          <td>{{contato.sexo}}</td>
+          <td>{{contato.reclamacao}}</td>          
+          <td>
+                <button class="btn btn-warning" ng-click="contatoController.editItem(contato.id)"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>Editar</button>
+                <button class="btn btn-danger" ng-click="deleteItem(contato.id)"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Excluir</button>
+          </td>
+          </td>
+        </tr>
+      </table>
+    </div>   
