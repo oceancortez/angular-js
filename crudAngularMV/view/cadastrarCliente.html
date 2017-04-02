@@ -1,0 +1,90 @@
+<div class="jumbotron">
+    <div class="container">
+        <div class="page-header">
+            <h3 class="text-center" data-ng-bind="labelCadastro"></h3>
+            <div class="col-sm-12">
+                <div class="panel-body">
+
+                    <form>
+
+                        <div class="col-sm-12">
+                            <div class="row">
+
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label class="label-control" for="cliente-id">Id</label>
+                                        <input type="text" class="form-control" id="cliente-id" readonly="readonly" ng-model="cliente.id">
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label for="nome">Nome</label>
+                                        <input type="text" class="form-control" id="nome" placeholder="Nome" ng-model="cliente.nome">
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label for="dataCadastro">Data de dataCadastro</label>
+                                        <input type="date" class="form-control" id="dataCadastro" placeholder="Data de dataCadastro" ng-model="cliente.dataCadastro" ng-required="true">
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label for="dataUltimaAlteracao">Data de UltimaAlteracao</label>
+                                        <input type="date" class="form-control" id="dataUltimaAlteracao" placeholder="Data de UltimaAlteracao" ng-model="cliente.dataUltimaAlteracao" ng-required="true">
+                                    </div>
+                                </div>
+
+                                <!--
+                                <div class="col-sm-3">
+                                    <div class="form-group">
+                                        <label for="sexo">Sexo</label>
+                                        <select class="form-control" id="sexo" ng-model="cliente.sexo" name="sexo">
+                     <option value="">Selecione</option> 
+                      <option value="F">Feminino</option>
+                      <option value="M">Masculino</option>    
+                    </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>-->
+
+                                <div class="col-sm-12">
+                                    <div class="row">
+
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <div class="col-sm-offset-1 col-sm-10">
+                                                    <button type="submit" class="btn btn-danger btn-lg btn-block" data-ng-if="!isUpdate()" data-ng-click="save(cliente)" ng-disabled="!(cliente.nome)">Cadastrar!</button>
+
+                                                    <button class="btn btn-default btn-lg btn-block" onclick="document.location.hash = '#/listar-clientes'" data-ng-if="!isUpdate()">Cancelar</button>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <div class="col-sm-offset-1 col-sm-10">
+                                                    <button type="submit" class="btn btn-danger btn-lg btn-block" data-ng-if="isUpdate()" data-ng-click="update(cliente)" ng-disabled="!(cliente.nome)">Atualizar!</button>
+
+                                                    <button class="btn btn-default btn-lg btn-block" onclick="document.location.hash = '#/listar-clientes'" data-ng-if="isUpdate()">Cancelar</button>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+                    </form>
+                    </div>
+
+                </div>
