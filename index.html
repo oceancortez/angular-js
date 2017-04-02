@@ -1,0 +1,68 @@
+<html ng-app="cliente">
+
+<head>
+    <meta charset="utf-8">
+    <title>app</title>
+
+    <!-- Os importes das libs do angular -->
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <!-- Os importes das libs do angular -->
+
+    <!-- import do arquivo de css-->
+    <link rel="stylesheet" type="text/css" href="crudAngularMV/css/app.css">
+
+    <!-- Os import das libs bootstrap -->
+    <link rel="stylesheet" href="crudAngularMV/css/bootstrap.min.css">
+
+    <!-- Os importes do main -->
+    <script src="crudAngularMV/js/app.js"></script>
+
+    <!-- Os importes dos factory -->
+    <script src="crudAngularMV/js/facade/clienteFacade.js"></script>
+    <!-- Os importes dos factory -->
+
+
+    <!-- Os importes dos factory -->
+    <script src="crudAngularMV/js/factory/clienteFactory.js"></script>
+    <!-- Os importes dos factory -->
+
+
+    <!-- Os importes dos servico -->
+    <script src="crudAngularMV/js/service/clienteService.js"></script>
+    <!--<script src="crudAngularMV/js/service/categoryService.js"></script>-->
+    <!-- Os importes dos servico -->
+
+    <!-- Os importes dos controllers -->
+    <script src="crudAngularMV/js/controller/cadastrarClienteController.js"></script>
+    <script src="crudAngularMV/js/controller/listarClienteController.js"></script>
+    <!--<script src="crudAngularMV/js/controller/categoryController.js"></script>-->
+    <!-- Os importes dos controllers -->
+
+</head>
+
+<body>
+
+    <div class="row">
+        <nav class="navbar navbar-inverse">
+            <ul class="nav navbar-nav">
+                <li role="presentation"><a href="#!/index">Home</a></li>
+                <li role="presentation"><a href="#!/listar-clientes">Lista de Clientes</a></li>
+                <li role="presentation"><a href="#!/cadastar-cliente">Cadastar Cliente</a></li>
+                <li role="presentation"><a href="#!/procurarContato">Procurar Contato</a></li>
+                <li role="presentation"><a href="#!/oxiprojectserverrest-category">Categories</a></li>
+                <li role="presentation"><a href="#!/adm">Administrador</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="panel panel-danger">
+        <div class="panel-heading  text-center">
+            <h4>Sistema de Pedidos</h4>
+        </div>
+    </div>
+    <!-- Os importe das views -->
+    <div ng-view></div>
+</body>
+
+</html>
