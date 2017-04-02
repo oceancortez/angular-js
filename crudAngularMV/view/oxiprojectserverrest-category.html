@@ -1,0 +1,60 @@
+<h1>oxiprojectserverrest-category</h1>
+
+
+
+
+    <div>
+        <form>
+            <div class="col-sm-9">
+                <div class="form-group">
+                  <div class="col-sm-offset-1 col-sm-10">
+
+                  <label for="nome">categoryName</label>
+                  <input type="text" class="form-control" id="categoryName" placeholder="categoryName" ng-model="category.categoryName">
+                  <br/>
+                  <label for="nome">description</label>
+                  <input type="text" class="form-control" id="description" placeholder="description" ng-model="category.description">
+                    <br/>
+                    <button type="submit" class="btn btn-danger btn-lg btn-block"                    
+                     data-ng-click="saveCategory('category')">Cadastrar</button>           
+                     
+                  </div>
+                </div>
+              </div>
+        
+        </form>
+    
+    </div>
+
+ <br/>
+  <br/>
+    
+
+
+
+
+    <div class="panel-body">
+
+        <h2 data-ng-if="listOfCategories.length > 0">{{error}}</h2>
+        <h2 class="panel-title text-center" data-ng-if="listOfCategories.length > 0">Listagem</h2>
+  
+
+        <table class="table table-striped" data-ng-if="listOfCategories.length > 0">
+        <tr>
+          <th>CategoryID</th>
+          <th>CategoryName</th>
+          <th>Description</th>
+          <th>Picture</th>
+        </tr>
+        <tr ng-repeat="category in listOfCategories">
+           <td>{{category.categoryId}}</td> 
+          <td>{{category.categoryName}}</td>
+          <td>{{category.description}}</td>
+          <td>{{category.picture}}</td>
+     
+
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>

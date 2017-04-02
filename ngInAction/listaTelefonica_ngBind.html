@@ -1,0 +1,50 @@
+<html ng-app="listaTelefonica">
+<head>
+<!--ng-bind Pega alguma coisa do scope e exibe -->
+		<title>Hello World</title>
+
+		<link rel="stylesheet" type="text/css" href="lib/bootstrap/bootstrap.css">
+		
+
+		<style>
+		.jumbotron{
+			width: 500px;
+			text-align: center;
+			margin-top: 20px;
+			margin-right: auto;
+			margin-left: auto;
+		}
+		</style>
+		<script src="lib/angular/angular.min.js"></script>
+		
+		<script>
+			angular.module("listaTelefonica", []);
+			angular.module("listaTelefonica").controller("listaTelefonicaController",
+			 function ($scope) {
+				$scope.app = "Lista Telefonica!";
+				$scope.contatos = [
+				{nome: "Pedro", telefone: "95449-4247"},
+				{nome: "Ana", telefone: "99999999"},
+				{nome: "Maria", telefone: "99999999"},
+				{nome: "João", telefone: "99999999"}
+				];
+			});
+		</script>
+</head>	
+	<body>
+	<div  ng-controller="listaTelefonicaController">
+
+		<div class="jumbotron">
+
+			<h4 ng-bind="app">
+				
+			</h4>		               
+
+
+		</div>
+
+		
+		</div>
+	</body>
+
+</html>

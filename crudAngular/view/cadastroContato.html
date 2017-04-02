@@ -1,0 +1,86 @@
+<div class="container">
+<div class="page-header">
+  <!--<div class="jumbotron">-->
+    <div class="col-sm-12">
+      <div class="panel-body">
+      <form ng-submit="save()">
+
+        <div class="col-sm-9">
+          <div class="row">
+            <div class="col-sm-9">
+
+               <div class="form-group">
+                <label class="label-control" for="record-id">Id</label>
+                <input type="text" class="form-control" id="record-id" readonly="readonly" ng-model="record.id">
+              </div>
+
+              <div class="form-group">
+                <label for="nome">Nome</label>
+                <input type="text" class="form-control" id="nome" placeholder="Nome" ng-model="record.nome">
+              </div>
+
+              <div class="form-group">
+                <label for="endereco">Endereço</label>
+                <input type="text" class="form-control" id="endereco" placeholder="Endereço" ng-model="record.endereco">
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-9">
+              <div class="form-group">
+
+                <label for="dtNascimento">Data de Nascimento</label>
+                <input type="date" class="form-control" id="dtNascimento" placeholder="Data de Nascimento"
+                 ng-model="record.dtNascimento"
+                 ng-required="true">
+              </div>
+
+              <div class="form-group">
+
+                <label for="telefone">Telefone</label>
+                <input type="text" class="form-control" id="telefone" placeholder="Telefone" ng-model="record.telefone">
+
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-9">
+                <div class="form-group">
+                  <label for="sexo">Sexo</label>
+                  <select class="form-control" id="sexo" ng-model="record.sexo" name="sexo">
+                     <option value="">Selecione</option> 
+                      <option value="F">Feminino</option>
+                      <option value="M">Masculino</option>    
+                    </select>
+                </div>     
+            </div>
+          </div>
+        </div>
+
+         <div class="row">
+            <div class="col-sm-9">
+
+           <div class="form-group">
+            <label for="reclamacao">Reclame Aqui!!</label>
+            <textarea class="form-control" rows="5" id="reclamacao" ng-model="record.reclamacao"></textarea>
+          </div>
+
+        <div class="form-group">
+          <div class="col-sm-offset-1 col-sm-10">
+            <button type="submit" class="btn btn-danger btn-lg btn-block"
+            ng-disabled="!(record.nome && record.endereco && record.dtNascimento && record.telefone && record.sexo && record.reclamacao)">Cadastrar!</button>
+
+            <button class="btn btn-default btn-lg btn-block" onclick="document.location.hash = '#/lista'">
+            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Cancelar</button>
+          </div>
+        </div> 
+            </div>
+          </div>       
+    </div>
+    </form>
+    
+  </div>
+
+
