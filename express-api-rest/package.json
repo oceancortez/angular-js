@@ -1,0 +1,18 @@
+{
+  "name": "apirestexpress",
+  "version": "1.0.0",
+  "description": "API rest express aula",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "API"
+  ],
+  "author": "Denivaldo Cruz",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.14.0",
+    "body-parser": "~1.15.2"
+  }
+}
