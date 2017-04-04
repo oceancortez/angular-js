@@ -16,10 +16,9 @@ function listarClienteController($scope, $location, clienteFacade) {
         promise.then(function(clientes) {
             console.log("Entrou no método = listarClienteController.findAll " + clientes);
             $scope.list = clientes;
-        }, function error() {
+        }, function error(response) {
             $scope.error = "Não foi possível carregar os clientes .";
             console.log("Não foi possível carregar os clientes .o = listarClienteController.findAll ");
-            alert("Não foi possível carregar os clientes .");
         });
 
 

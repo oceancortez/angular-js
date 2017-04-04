@@ -24,6 +24,8 @@ function clienteFacade(clienteService, clienteFactory, $q) {
                     retorno.error = retorno.message;
                     reject(retorno);
                 }
+            }, function error(response){
+                reject(reject);
             });
         });
     };
