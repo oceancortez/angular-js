@@ -1,0 +1,67 @@
+<html ng-app="cliente">
+
+<head>
+    <meta charset="utf-8">
+    <title>app</title>
+
+    <!-- Os importes das libs do angular -->
+    <script type="text/javascript" src="bower_components/angular/angular.js"></script>
+    <script type="text/javascript" src="bower_components/angular-route/angular-route.js"></script>
+
+    <!-- import do arquivo de css-->
+    <link rel="stylesheet" type="text/css" href="sofea-bower-omc-pedidos/css/app.css">
+
+    <!-- Os import das libs bootstrap -->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+
+    <!-- Os importes do main -->
+    <script src="sofea-bower-omc-pedidos/js/app.js"></script>
+
+    <!-- Os importes dos factory -->
+    <script src="sofea-bower-omc-pedidos/js/facade/clienteFacade.js"></script>
+    <!-- Os importes dos factory -->
+
+
+    <!-- Os importes dos factory -->
+    <script src="sofea-bower-omc-pedidos/js/factory/clienteFactory.js"></script>
+    <!-- Os importes dos factory -->
+
+
+    <!-- Os importes dos servico -->
+    <script src="sofea-bower-omc-pedidos/js/service/clienteService.js"></script>
+    <!--<script src="sofea-bower-omc-pedidos/js/service/categoryService.js"></script>-->
+    <!-- Os importes dos servico -->
+
+    <!-- Os importes dos controllers -->
+    <script src="sofea-bower-omc-pedidos/js/controller/cadastrarClienteController.js"></script>
+    <script src="sofea-bower-omc-pedidos/js/controller/listarClienteController.js"></script>
+    <!--<script src="sofea-bower-omc-pedidos/js/controller/categoryController.js"></script>-->
+    <!-- Os importes dos controllers -->
+
+</head>
+
+<body>
+
+    <div class="row">
+        <nav class="navbar navbar-inverse">
+            <ul class="nav navbar-nav">
+                <li role="presentation"><a href="#!/index">Home</a></li>
+                <li role="presentation"><a href="#!/listar-clientes">Lista de Clientes</a></li>
+                <li role="presentation"><a href="#!/cadastar-cliente">Cadastar Cliente</a></li>
+                <li role="presentation"><a href="#!/procurarContato">Procurar Contato</a></li>
+                <li role="presentation"><a href="#!/oxiprojectserverrest-category">Categories</a></li>
+                <li role="presentation"><a href="#!/adm">Administrador</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="panel panel-danger">
+        <div class="panel-heading  text-center">
+            <h4>Sistema de Pedidos</h4>
+        </div>
+    </div>
+    <!-- Os importe das views -->
+    <div ng-view></div>
+</body>
+
+</html>

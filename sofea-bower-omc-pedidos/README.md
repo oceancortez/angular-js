@@ -1,108 +1,85 @@
-# README #
+sofea-bower
 
-Criando uma aplicação AngularJs SOFEA (MV*whatever), consumindo serviço REST do NodeJs.
+Criando uma aplicação pelo gerenciador de dependencia Bower, AngularJs SOFEA (MV*whatever), consumindo serviço REST do NodeJs
 
+@Lembrando que a index.html deve ficar no root do projeto
 
-                  Conteitos
+#Comando para iniciar C:\xampp\htdocs\github\sofea-bower>bower init
 
-    Angular é uma linguagem declarativa que extende o html
+? name sofea-bower
 
-•	CORS - Implementação de seguraça Apache proxy reverso: 
+? description API com gerenciador bower com Angular
 
-Ele inverte o dominio de origem para o de destino
+? main file
 
-Para chamadas de serviçoes REST, utlizamos o proxyReverso que ficam fora do servidor apache
+? keywords angularjs
 
-•	$scope: 
+? authors oceancortez
 
-Faz a intermediação entre a view e o controller, ele serve a view e o $scope
+? license MIT
 
+? homepage https://github.com/oceancortez/sofea-bower
 
-•	Template: 
+? set currently installed components as dependencies? Yes
 
-São tags dinamicas, é um arquivo html com marcações do Angular
+? add commonly ignored files to ignore list? Yes
 
-•	Html:
+? would you like to mark this package as private which prevents it from being
 
-É um arquivo estático
+? would you like to mark this package as private which prevents it from being
 
+cidentally published to the registry? Yes
 
-•	View:
+{
 
-É um arquivo estático
+name: 'sofea-bower',
 
+homepage: 'https://github.com/oceancortez/sofea-bower',
 
-•	Controller: 
+authors: [
 
-Serve quando temos que inserir um objeto ou modificar, serve como regra de negócio,
-pode adicionar ou retirar atributos para devolver para o controller
+'oceancortez'
+],
 
-•	Factor: 
+description: 'API com gerenciador bower com Angular',
 
-Serve quando temos que inserir um objeto ou modificar, serve como regra de negócio,
-pode adicionar ou retirar atributos para devolver para o controller
+main: '',
 
+keywords: [
 
-•	Serviço:  
+'angularjs'
+],
 
-Serve para compartilhar das ou funçoes
+license: 'MIT',
 
+private: true,
 
-•	Dirertivas: 
+ignore: [
 
-É uma quebra de paradigma
+'**/.*',
 
-•	Provider: 
+'node_modules',
 
-É uma quebra de paradigma
+'bower_components',
 
+'test',
 
-Tags: Angular
+'tests'
+]
 
-•  ng-app 
+}
 
-Indicamos o modulo principal
+? Looks good? Yes
 
-•  ng-bind
+#Commands -- update no bower npm -i -g bower
 
-Faz a mesmas coisa que o ng-model, só que quando não tem valor ele não mostra o 
-interpolador
+-- search any package bower search angularjs
 
-Ex: <h1 ng-bind="yourName"></h1>
+-- install and save any package bower install angular#1.6.2 --save
 
-•  ng-view
+bower install angular-mocks#1.6.2
 
-Seria o próprio html
+-- desisntalando uma dependencia bower uninstall xxxx
 
-•  ng-model
-
-Faz two way data bindng, da view para o controller e vice versa
-
-Utilizamos quando queremos capturar ou interpretar os dados do form para estar disponivel
-dentro do $scope
-
-Ex: <h1>{{yourName}}</h1>
-
-
-•  ng-view
-
-
-•  ng-view
-
-
-•  ng-view
-
-
-•  ng-view
-
-
-•  ng-view
-
-
-
-
-
-
-
-
-
+-- forçando o bower a installar ultima versao de alguma dependencia com confilito
+bower install -g --force-latest

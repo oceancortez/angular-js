@@ -15,16 +15,16 @@ angular.module('cliente', ['ngRoute'])
         //@templateUrl Informar o diretório do arquivo dentro do projeto
         //@controller  Informar apens o nome do controller
             .when('/home', {
-                templateUrl: 'view/home.html',
+                templateUrl: 'sofea-bower-omc-pedidos/view/home.html',
                 controller: 'indexController'
             })
             .when('/listar-clientes', {
-                templateUrl: 'view/listarClientes.html',
+                templateUrl: 'sofea-bower-omc-pedidos/view/listarClientes.html',
                 controller: 'listarClienteController'
             })
 
         .when('/cadastar-cliente', {
-            templateUrl: 'view/cadastrarCliente.html',
+            templateUrl: 'sofea-bower-omc-pedidos/view/cadastrarCliente.html',
             controller: 'cadastrarClienteController'
         })
 
