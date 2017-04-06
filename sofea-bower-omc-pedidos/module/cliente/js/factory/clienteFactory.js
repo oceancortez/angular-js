@@ -1,4 +1,4 @@
-angular.module('cliente')
+angular.module('omc.pedidos.cliente')
 
 .factory('clienteFactory', clienteFactory);
 

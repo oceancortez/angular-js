@@ -1,4 +1,4 @@
-angular.module('cliente').service('clienteFacade', clienteFacade);
+angular.module('omc.pedidos.cliente').service('clienteFacade', clienteFacade);
 
 clienteFacade.$inject = ['clienteService', 'clienteFactory', '$q'];
 

@@ -1,4 +1,4 @@
-angular.module('cliente')
+angular.module('omc.pedidos.cliente')
 
 .service('clienteService', clienteService);
 

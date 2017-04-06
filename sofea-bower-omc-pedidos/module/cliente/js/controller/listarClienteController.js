@@ -1,4 +1,4 @@
-angular.module('cliente')
+angular.module('omc.pedidos.cliente')
 
 .controller('listarClienteController', listarClienteController);
 
@@ -17,6 +17,8 @@ function listarClienteController($scope, $location, clienteFacade) {
             console.log("Entrou no método = listarClienteController.findAll " + clientes);
             $scope.list = clientes;
         }, function error(response) {
+            $scope.list = 
+            [{"codigo" : "MOCK", "nome" : "MOCK", "dataCadastro" : new Date(), "dataUltimaAlteracao" : new Date()}];
             $scope.error = "Não foi possível carregar os clientes .";
             console.log("Não foi possível carregar os clientes .o = listarClienteController.findAll ");
         });
