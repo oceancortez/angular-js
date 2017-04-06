@@ -18,7 +18,7 @@ function ListarPedidoController($scope, $location, PedidoFacade) {
             $scope.list = pedidos;
         }, function error(response) {
             $scope.list = 
-            [{"codigo" : "MOCK", "nome" : "MOCK", "dataCadastro" : new Date(), "dataUltimaAlteracao" : new Date()}];
+            [{"codigo" : "MOCK", "codigoPedido" : "MOCK", "codigoProduto" : "MOCK", "dataCadastro" : new Date(), "dataUltimaAlteracao" : new Date()}];
             $scope.error = "Não foi possível carregar os pedidos .";
             console.log("Não foi possível carregar os pedidos .o = listarClienteController.findAll ");
         });
