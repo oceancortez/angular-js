@@ -1,27 +1,28 @@
        //@angular.module passamos o nome do modulo da aplicação e criamos o controller
-    //    angular.module('omc.pedidos.cliente')
-    //        .controller('cadastrarClienteController', cadastrarClienteController);
+       angular.module('omc.cliente')
 
-    //    cadastrarClienteController.$inject = ['$scope', '$routeParams', '$location', 'clienteFacade'];
+        .controller('CadastrarClienteController', CadastrarClienteController);
 
-    //    function cadastrarClienteController($scope, $routeParams, $location, clienteFacade) {
-    //        var vm = this;
-    //        vm = $scope;
+       CadastrarClienteController.$inject = ['$scope', '$routeParams', '$location', 'ClienteFacade'];
 
-    //        vm.contato = {
-    //            id: $routeParams.id
-    //        };
+       function CadastrarClienteController($scope, $routeParams, $location, ClienteFacade) {
+           var vm = this;
+           vm = $scope;
 
-    //        vm.labelCadastro = 'Cadastro de Cliente!';
+           vm.contato = {
+               id: $routeParams.id
+           };
 
-
-    //        vm.save = function(cliente) {
-    //            var promise = clienteFacade.cadastrarCliente(cliente);
-    //        };
+           vm.labelCadastro = 'Cadastro de Cliente!';
 
 
-    //        vm.refreshList = function() {
-    //            $location.path("/listar-clientes");
-    //        };
+           vm.save = function(cliente) {
+               var promise = ClienteFacade.cadastrarCliente(cliente);
+           };
 
-    //    };
+
+           vm.refreshList = function() {
+               $location.path("/listar-clientes");
+           };
+
+       };

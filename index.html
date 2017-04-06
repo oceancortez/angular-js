@@ -1,4 +1,4 @@
-<html ng-app="omc.pedidos">
+<html ng-app="omc">
 
 <head>
     <meta charset="utf-8">
@@ -20,31 +20,35 @@
 
      <!--modules-->
      <script src="sofea-bower-omc-pedidos/module/cliente/js/cliente.module.js"></script>
-      <!--modules-->
-
-    
+     <script src="sofea-bower-omc-pedidos/module/pedido/js/pedido.module.js"></script>
+      <!--modules-->    
 
       <!--rotas-->
      <script src="route-config.js?v=<%= jsversion %>" charset="UTF-8"></script>
       <!--rotas-->
 
      <!-- Os importes dos servico -->
-    <script src="sofea-bower-omc-pedidos/module/cliente/js/service/clienteService.js"></script>
+    <script src="sofea-bower-omc-pedidos/module/cliente/js/service/ClienteService.js"></script>
+    <script src="sofea-bower-omc-pedidos/module/pedido/js/service/PedidoService.js"></script>
     <!-- Os importes dos servico -->
 
     <!-- Os importes dos factory -->
-    <script src="sofea-bower-omc-pedidos/module/cliente/js/facade/clienteFacade.js"></script>
+    <script src="sofea-bower-omc-pedidos/module/cliente/js/facade/ClienteFacade.js"></script>
+    <script src="sofea-bower-omc-pedidos/module/pedido/js/facade/PedidoFacade.js"></script>
     <!-- Os importes dos factory -->
 
     <!-- Os importes dos factory -->
-    <script src="sofea-bower-omc-pedidos/module/cliente/js/factory/clienteFactory.js"></script>
+    <script src="sofea-bower-omc-pedidos/module/cliente/js/factory/ClienteFactory.js"></script>
+    <script src="sofea-bower-omc-pedidos/module/pedido/js/factory/PedidoFactory.js"></script>
     <!-- Os importes dos factory -->
 
     <!-- Os importes dos controllers -->
-    <script src="sofea-bower-omc-pedidos/module/cliente/js/controller/cadastrarClienteController.js"></script>
-    <script src="sofea-bower-omc-pedidos/module/cliente/js/controller/listarClienteController.js"></script>
+    <script src="sofea-bower-omc-pedidos/module/cliente/js/controller/CadastrarClienteController.js"></script>
+    <script src="sofea-bower-omc-pedidos/module/cliente/js/controller/ListarClienteController.js"></script>
+    <script src="sofea-bower-omc-pedidos/module/pedido/js/controller/CadastrarPedidoController.js"></script>
+    <script src="sofea-bower-omc-pedidos/module/pedido/js/controller/ListarPedidoController.js"></script>
     <!-- Os importes dos controllers -->
-       <!--module <cliente--></cliente-->
+
 
 </head>
 

@@ -1,10 +1,10 @@
-angular.module('omc.cliente')
+angular.module('omc.pedido')
 
-.controller('ListarClienteController', ListarClienteController);
+.controller('ListarPedidoController', ListarPedidoController);
 
-ListarClienteController.$inject = ["$scope", "$location", "ClienteFacade"];
+ListarPedidoController.$inject = ["$scope", "$location", "PedidoFacade"];
 
-function ListarClienteController($scope, $location, ClienteFacade) {
+function ListarPedidoController($scope, $location, PedidoFacade) {
 
     var vm = this;
 
@@ -12,15 +12,15 @@ function ListarClienteController($scope, $location, ClienteFacade) {
 
     function refreshList() {
 
-        var promise = ClienteFacade.listarClientes();
-        promise.then(function(clientes) {
-            console.log("Entrou no método = ListarClienteController.findAll " + clientes);
-            $scope.list = clientes;
+        var promise = PedidoFacade.listarPedidos();
+        promise.then(function(pedidos) {
+            console.log("Entrou no método = listarClienteController.findAll " + pedidos);
+            $scope.list = pedidos;
         }, function error(response) {
             $scope.list = 
             [{"codigo" : "MOCK", "nome" : "MOCK", "dataCadastro" : new Date(), "dataUltimaAlteracao" : new Date()}];
-            $scope.error = "Não foi possível carregar os clientes .";
-            console.log("Não foi possível carregar os clientes .o = ListarClienteController.findAll ");
+            $scope.error = "Não foi possível carregar os pedidos .";
+            console.log("Não foi possível carregar os pedidos .o = listarClienteController.findAll ");
         });
 
 
@@ -28,7 +28,7 @@ function ListarClienteController($scope, $location, ClienteFacade) {
 
     //TODO Terminar de refatorar    
     $scope.deleteItem = function(id) {
-        ClienteFacade.deleteOne(id, result, error)
+        PedidoFacade.deleteOne(id, result, error)
             .success(function(result) {
                 if (result.data == "ok") {
                     alert("Registro removido.");

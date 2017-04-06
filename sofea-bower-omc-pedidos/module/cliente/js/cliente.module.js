@@ -1,1 +1,1 @@
-    angular.module('omc.pedidos.cliente', []);
+    angular.module('omc.cliente', []);

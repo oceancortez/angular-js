@@ -1,10 +1,10 @@
-angular.module('omc.pedidos.cliente')
+angular.module('omc.cliente')
 
-.factory('clienteFactory', clienteFactory);
+.factory('ClienteFactory', ClienteFactory);
 
-clienteFactory.$inject = ['$log', '$q'];
+ClienteFactory.$inject = ['$log', '$q'];
 
-function clienteFactory() {
+function ClienteFactory() {
 
     var factory = {
         listarClientesIn: listarClientesIn,
@@ -19,7 +19,7 @@ function clienteFactory() {
 
     function listarClientesIn(response) {
         var lista = [];
-        console.log("Entrou no método = clienteFactory.listarClientesIn " + response.data);
+        console.log("Entrou no método = ClienteFactory.listarClientesIn " + response.data);
         if (response.data != undefined) {
             response.data.forEach(function(cliente) {
                 lista.push({
@@ -31,7 +31,7 @@ function clienteFactory() {
             });
         }
 
-        console.log("Saiu do método = clienteFactory.listarClientesIn " + response);
+        console.log("Saiu do método = ClienteFactory.listarClientesIn " + response);
         return lista;
     };
 
