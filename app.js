@@ -1,5 +1,6 @@
-angular.module('omc',[
+angular.module('omc', [
     'ngRoute',
     'omc.cliente',
-     'omc.pedido'
-    ]);
+    'omc.pedido',
+    'omc.produto'
+]);

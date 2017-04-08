@@ -1,46 +1,3 @@
-<<<<<<< HEAD
-<html ng-app="cliente">
-
-<head>
-    <meta charset="utf-8">
-    <title>app</title>
-
-    <!-- Os importes das libs do angular -->
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/angular-route/angular-route.js"></script>
-    <!-- Os importes das libs do angular -->
-
-    <!-- import do arquivo de css-->
-    <link rel="stylesheet" type="text/css" href="crudAngularMV/css/app.css">
-
-    <!-- Os import das libs bootstrap -->
-    <link rel="stylesheet" href="crudAngularMV/css/bootstrap.min.css">
-
-    <!-- Os importes do main -->
-    <script src="crudAngularMV/js/app.js"></script>
-
-    <!-- Os importes dos factory -->
-    <script src="crudAngularMV/js/facade/clienteFacade.js"></script>
-    <!-- Os importes dos factory -->
-
-
-    <!-- Os importes dos factory -->
-    <script src="crudAngularMV/js/factory/clienteFactory.js"></script>
-    <!-- Os importes dos factory -->
-
-
-    <!-- Os importes dos servico -->
-    <script src="crudAngularMV/js/service/clienteService.js"></script>
-    <!--<script src="crudAngularMV/js/service/categoryService.js"></script>-->
-    <!-- Os importes dos servico -->
-
-    <!-- Os importes dos controllers -->
-    <script src="crudAngularMV/js/controller/cadastrarClienteController.js"></script>
-    <script src="crudAngularMV/js/controller/listarClienteController.js"></script>
-    <!--<script src="crudAngularMV/js/controller/categoryController.js"></script>-->
-    <!-- Os importes dos controllers -->
-
-=======
 <html ng-app="omc">
 
 <head>
@@ -58,31 +15,35 @@
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
 
     <!-- Os importe do main -->
-     <script src="app.js" charset="UTF-8"></script> 
-      <!-- Os importe do main -->   
+    <script src="app.js" charset="UTF-8"></script>
+    <!-- Os importe do main -->
 
-     <!--modules-->
-     <script src="sofea-bower-omc-pedidos/module/cliente/js/cliente.module.js"></script>
-     <script src="sofea-bower-omc-pedidos/module/pedido/js/pedido.module.js"></script>
-      <!--modules-->    
+    <!--modules-->
+    <script src="sofea-bower-omc-pedidos/module/cliente/js/cliente.module.js"></script>
+    <script src="sofea-bower-omc-pedidos/module/pedido/js/pedido.module.js"></script>
+    <script src="sofea-bower-omc-pedidos/module/produto/produto.module.js"></script>
+    <!--modules-->
 
-      <!--rotas-->
-     <script src="route-config.js?v=<%= jsversion %>" charset="UTF-8"></script>
-      <!--rotas-->
+    <!--rotas-->
+    <script src="route-config.js?v=<%= jsversion %>" charset="UTF-8"></script>
+    <!--rotas-->
 
-     <!-- Os importes dos servico -->
+    <!-- Os importes dos servico -->
     <script src="sofea-bower-omc-pedidos/module/cliente/js/service/ClienteService.js"></script>
     <script src="sofea-bower-omc-pedidos/module/pedido/js/service/PedidoService.js"></script>
+    <script src="sofea-bower-omc-pedidos/module/produto/js/service/ProdutoService.js"></script>
     <!-- Os importes dos servico -->
 
     <!-- Os importes dos factory -->
     <script src="sofea-bower-omc-pedidos/module/cliente/js/facade/ClienteFacade.js"></script>
     <script src="sofea-bower-omc-pedidos/module/pedido/js/facade/PedidoFacade.js"></script>
+    <script src="sofea-bower-omc-pedidos/module/produto/js/facade/ProdutoFacade.js"></script>
     <!-- Os importes dos factory -->
 
     <!-- Os importes dos factory -->
     <script src="sofea-bower-omc-pedidos/module/cliente/js/factory/ClienteFactory.js"></script>
     <script src="sofea-bower-omc-pedidos/module/pedido/js/factory/PedidoFactory.js"></script>
+    <script src="sofea-bower-omc-pedidos/module/produto/js/factory/ProdutoFactory.js"></script>
     <!-- Os importes dos factory -->
 
     <!-- Os importes dos controllers -->
@@ -90,10 +51,10 @@
     <script src="sofea-bower-omc-pedidos/module/cliente/js/controller/ListarClienteController.js"></script>
     <script src="sofea-bower-omc-pedidos/module/pedido/js/controller/CadastrarPedidoController.js"></script>
     <script src="sofea-bower-omc-pedidos/module/pedido/js/controller/ListarPedidoController.js"></script>
+    <script src="sofea-bower-omc-pedidos/module/produto/js/controller/ProdutoController.js"></script>
     <!-- Os importes dos controllers -->
 
 
->>>>>>> dfdefcc0a6dae9d9d51aa9745dba19a8fed96cf7
 </head>
 
 <body>
@@ -104,12 +65,8 @@
                 <li role="presentation"><a href="#!/index">Home</a></li>
                 <li role="presentation"><a href="#!/listar-clientes">Lista de Clientes</a></li>
                 <li role="presentation"><a href="#!/cadastar-cliente">Cadastar Cliente</a></li>
-<<<<<<< HEAD
-                <li role="presentation"><a href="#!/procurarContato">Procurar Contato</a></li>
-                <li role="presentation"><a href="#!/oxiprojectserverrest-category">Categories</a></li>
-=======
                 <li role="presentation"><a href="#!/listar-pedidos">Lista de Pedidos</a></li>
->>>>>>> dfdefcc0a6dae9d9d51aa9745dba19a8fed96cf7
+                <li role="presentation"><a href="#!/produto">Produto</a></li>
                 <li role="presentation"><a href="#!/adm">Administrador</a></li>
             </ul>
         </nav>

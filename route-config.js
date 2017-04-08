@@ -1,5 +1,5 @@
 angular.module('omc')
-     .config(function($routeProvider) {
+    .config(function($routeProvider) {
         $routeProvider.when('/home', {
                 templateUrl: 'sofea-bower-omc-pedidos/module/cliente/view/home.html',
                 controller: 'indexController'
@@ -14,10 +14,15 @@ angular.module('omc')
             controller: 'CadastrarClienteController'
         })
 
-        .when('/listar-pedidos',{
+        .when('/listar-pedidos', {
             templateUrl: 'sofea-bower-omc-pedidos/module/pedido/view/listarPedidos.html',
             controller: 'ListarPedidoController'
         })
+
+        .when('/produto', {
+                templateUrl: 'sofea-bower-omc-pedidos/module/produto/view/produto.html',
+                controller: 'ProdutoController'
+            })
             .otherwise({
                 redirectTo: '/'
             })
