@@ -38,7 +38,13 @@ release.properties
 # vscode
 /.vscode
 
+<<<<<<< HEAD
 # bower libs
 bower_components/
+=======
+# bower
+/bower_components
+
+>>>>>>> dfdefcc0a6dae9d9d51aa9745dba19a8fed96cf7
  
 

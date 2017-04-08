@@ -1,10 +1,10 @@
-angular.module('cliente')
+angular.module('omc.cliente')
 
-.controller('listarClienteController', listarClienteController);
+.controller('ListarClienteController', ListarClienteController);
 
-listarClienteController.$inject = ["$scope", "$location", "clienteFacade"];
+ListarClienteController.$inject = ["$scope", "$location", "ClienteFacade"];
 
-function listarClienteController($scope, $location, clienteFacade) {
+function ListarClienteController($scope, $location, ClienteFacade) {
 
     var vm = this;
 
@@ -12,14 +12,15 @@ function listarClienteController($scope, $location, clienteFacade) {
 
     function refreshList() {
 
-        var promise = clienteFacade.listarClientes();
+        var promise = ClienteFacade.listarClientes();
         promise.then(function(clientes) {
-            console.log("Entrou no método = listarClienteController.findAll " + clientes);
+            console.log("Entrou no método = ListarClienteController.findAll " + clientes);
             $scope.list = clientes;
-        }, function error() {
+        }, function error(response) {
+            $scope.list = 
+            [{"codigo" : "MOCK", "nome" : "MOCK", "dataCadastro" : new Date(), "dataUltimaAlteracao" : new Date()}];
             $scope.error = "Não foi possível carregar os clientes .";
-            console.log("Não foi possível carregar os clientes .o = listarClienteController.findAll ");
-            alert("Não foi possível carregar os clientes .");
+            console.log("Não foi possível carregar os clientes .o = ListarClienteController.findAll ");
         });
 
 
@@ -27,7 +28,7 @@ function listarClienteController($scope, $location, clienteFacade) {
 
     //TODO Terminar de refatorar    
     $scope.deleteItem = function(id) {
-        clienteFacade.deleteOne(id, result, error)
+        ClienteFacade.deleteOne(id, result, error)
             .success(function(result) {
                 if (result.data == "ok") {
                     alert("Registro removido.");

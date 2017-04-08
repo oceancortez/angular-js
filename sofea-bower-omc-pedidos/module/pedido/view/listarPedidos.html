@@ -1,0 +1,31 @@
+<div ng-if="list.length">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h2 class="panel-title text-center">Pedidos</h2>
+        </div>
+        <div class="panel-body">
+            <table class="table table-striped">
+                <tr>
+                    <th>codigo pedido</th>
+                    <th>codigo cliente</th>
+                    <th>codigo produto</th>
+                    <th>Data de Cadastro</th>
+                    <th>Data de Ultima Atualização</th>
+                    <th></th>
+                </tr>
+                <tr ng-repeat="pedido in list">
+                    <td>{{pedido.codigo}}</td>
+                    <td>{{pedido.codigoCliente}}</td>
+                    <td>{{pedido.codigoProduto}}</td>
+                    <td>{{pedido.dataCadastro| date : "dd/MM/yyyy"}}</td>
+                    <td>{{pedido.dataUltimaAlteracao| date : "dd/MM/yyyy"}}</td>
+                    <td>
+                        <button class="btn btn-warning" ng-click="editItem(pedido.id)"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>Editar</button>
+                        <button class="btn btn-danger" ng-click="deleteItem(pedido.id)"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Excluir</button>
+                    </td>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,10 +1,11 @@
        //@angular.module passamos o nome do modulo da aplicação e criamos o controller
-       angular.module('cliente')
-           .controller('cadastrarClienteController', cadastrarClienteController);
+       angular.module('omc.cliente')
 
-       cadastrarClienteController.$inject = ['$scope', '$routeParams', '$location', 'clienteFacade'];
+        .controller('CadastrarClienteController', CadastrarClienteController);
 
-       function cadastrarClienteController($scope, $routeParams, $location, clienteFacade) {
+       CadastrarClienteController.$inject = ['$scope', '$routeParams', '$location', 'ClienteFacade'];
+
+       function CadastrarClienteController($scope, $routeParams, $location, ClienteFacade) {
            var vm = this;
            vm = $scope;
 
@@ -16,7 +17,7 @@
 
 
            vm.save = function(cliente) {
-               var promise = clienteFacade.cadastrarCliente(cliente);
+               var promise = ClienteFacade.cadastrarCliente(cliente);
            };
 
 

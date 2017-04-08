@@ -1,10 +1,10 @@
-angular.module('cliente')
+angular.module('omc.cliente')
 
-.service('clienteService', clienteService);
+.service('ClienteService', ClienteService);
 
-clienteService.$inject = ['$http'];
+ClienteService.$inject = ['$http'];
 
-function clienteService($http) {
+function ClienteService($http) {
 
     var _headers = {
         'Accept': 'application/json',
@@ -19,12 +19,12 @@ function clienteService($http) {
     return service;
 
     function findAll() {
-        console.log("Entrou no método = clienteService.findAll ");
+        console.log("Entrou no método = ClienteService.findAll ");
         return $http.get("http://localhost/omc-pedidos-multi-jta-jndi-jpa-h-jersey-test-backend/cliente/listar-clientes");
     };
 
     function cadastrarCliente(out) {
-        console.log("Entrou no método = clienteService.save() post ");
+        console.log("Entrou no método = ClienteService.save() post ");
         return $http.post("http://localhost/omc-pedidos-multi-jta-jndi-jpa-h-jersey-test-backend/cliente/cadastrar", out, {
             headers: _headers
         });
