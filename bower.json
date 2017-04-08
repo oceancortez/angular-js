@@ -1,6 +1,5 @@
 {
-<<<<<<< HEAD
-    "name": "sofea",
+    "name": "sofea-bower-bower-pedidos",
     "homepage": "https://github.com/oceancortez/sofea/tree/sofea-bower-omc-pedidos",
     "authors": [
         "oceancortez"
@@ -24,36 +23,8 @@
         "angular-mocks": "1.6.2",
         "angular-route": "^1.6.2",
         "bootstrap": "^3.3.7"
+    },
+    "resolutions": {
+        "angular": "1.6.4"
     }
 }
-=======
-  "name": "sofea-bower-bower-pedidos",
-  "homepage": "https://github.com/oceancortez/sofea/tree/sofea-bower-omc-pedidos",
-  "authors": [
-    "oceancortez"
-  ],
-  "description": "API com gerenciador bower com Angular",
-  "main": "",
-  "keywords": [
-    "angularjs"
-  ],
-  "license": "MIT",
-  "private": true,
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "test",
-    "tests"
-  ],
-  "dependencies": {
-    "angular": "1.6.2",
-    "angular-mocks": "1.6.2",
-    "angular-route": "^1.6.2",
-    "bootstrap": "^3.3.7"
-  },
-  "resolutions": {
-    "angular": "1.6.4"
-  }
-}
->>>>>>> dfdefcc0a6dae9d9d51aa9745dba19a8fed96cf7
