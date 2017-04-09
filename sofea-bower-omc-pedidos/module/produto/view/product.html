@@ -1,30 +1,33 @@
 <h1> >product</h1>
+<div data-ng-controller="ProductController as ProductCtrl">
+    <div class="btn-group" role="group">
 
-<div class="btn-group" role="group">
+        <button class="btn btn-success" ng-click="ProductCtrl.showViews('showCreate')"> 
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> create product
+        </button>
 
+        <button class="btn btn-primary" ng-click="ProductCtrl.showViews('showUpdate')">
+            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Update product
+        </button>
 
-    <a class="btn btn-success" href="#!/product/create">
-        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> create product
-    </a>
+        <button class="btn btn-info" ng-click="ProductCtrl.showViews('showList')">
+            <span class="glyphicon glyphicon-list" aria-hidden="true"></span> list product
+        </button>
 
+        <button class="btn btn-danger" ng-click="ProductCtrl.showViews('showDelete')">
+            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete Product
+        </button>
 
+        <button class="btn btn-default" ng-click="ProductCtrl.showViews('showTest')">
+            <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Test Product
+        </button>
 
-    <a class="btn btn-primary" href="#!/product/refresh">
-        <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> refresh product
-    </a>
+    </div>
 
-
-
-    <a class="btn btn-info" href="#!/product/list">
-        <span class="glyphicon glyphicon-list" aria-hidden="true"></span> list product
-    </a>
-
-    <a class="btn btn-danger" href="#!/product/delete">
-        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Delete Product
-    </a>
-
-    <a class="btn btn-default" href="#!/product/test">
-        <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Test Product
-    </a>
+    <div ng-include="'sofea-bower-omc-pedidos/module/produto/view/listProduct.html'" data-ng-if="ProductCtrl.showList"> </div>
+    <div ng-include="'sofea-bower-omc-pedidos/module/produto/view/updateProduct.html'" data-ng-if="ProductCtrl.showUpdate"> </div>
+    <div ng-include="'sofea-bower-omc-pedidos/module/produto/view/deleteProduct.html'" data-ng-if="ProductCtrl.showDelete"> </div>
+    <div ng-include="'sofea-bower-omc-pedidos/module/produto/view/createProduct.html'" data-ng-if="ProductCtrl.showCreate"> </div>
+    <div ng-include="'sofea-bower-omc-pedidos/module/produto/view/testProduct.html'" data-ng-if="ProductCtrl.showTest"> </div>
 
 </div>

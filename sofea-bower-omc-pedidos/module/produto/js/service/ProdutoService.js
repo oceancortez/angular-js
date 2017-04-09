@@ -19,7 +19,6 @@ function ProdutoService($http) {
     return service;
 
     function findAll() {
-        console.log("Entrou no método = produtoService.findAll ");
         return $http.get("http://localhost/omc-pedidos-multi-jta-jndi-jpa-h-jersey-test-backend/produto/listar-produtos");
     };
 

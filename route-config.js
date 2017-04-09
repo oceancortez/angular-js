@@ -21,7 +21,8 @@ angular.module('omc')
 
         .when('/product', {
             templateUrl: 'sofea-bower-omc-pedidos/module/produto/view/product.html',
-            controller: 'CreateProductController'
+            controller: 'ProductController',
+            controllerAs: 'ProductCtrl'
         })
 
         .when('/product/create', {
@@ -32,7 +33,8 @@ angular.module('omc')
 
         .when('/product/list', {
             templateUrl: 'sofea-bower-omc-pedidos/module/produto/view/listProduct.html',
-            controller: 'CreateProductController'
+            controller: 'ListProductController',
+            controllerAs: 'ListProductCtrl'
         })
 
         .when('/product/delete', {
@@ -45,6 +47,12 @@ angular.module('omc')
             templateUrl: 'sofea-bower-omc-pedidos/module/produto/view/testProduct.html',
             controller: 'TestProductController',
             controllerAs: 'TestProductCtrl'
+        })
+
+        .when('/product/update', {
+            templateUrl: 'sofea-bower-omc-pedidos/module/produto/view/updateProduct.html',
+            controller: 'UpdateProductController',
+            controllerAs: 'UpdateProductCtrl'
         })
 
 

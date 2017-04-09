@@ -1,35 +1,40 @@
-<h1>List Products</h1>
+<div ng-controller="ListProductController as ListProductCtrl">
+    <h1>List Products</h1>
+    <div ng-if="ListProductCtrl.products.length">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2 class="panel-title text-center">Produtos</h2>
+            </div>
+            <div class="panel-body">
+                <table class="table table-striped">
+                    <tr>
+                        <th>
+                            <button class="btn btn-default glyphicon glyphicon-retweet" ng-click="ListProductCtrl.sortBy('codigo')">Code</button>
+                            <span class="sortorder" ng-show="ListProductCtrl.propertyName === 'codigo'" ng-class="{reverse: reverse}"></span>
+                        </th>
 
-<div ng-if="list.length">
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h2 class="panel-title text-center">Produtos</h2>
-        </div>
-        <div class="panel-body">
-            <table class="table table-striped">
-                <tr>
-                    <th>codigo produto</th>
-                    <th>Nome do Produto</th>
-                    <th>Valor</th>
-                    <th>Quantidade</th>
-                    <th>Data de Cadastro</th>
-                    <th>Data de Ultima Atualização</th>
-                    <th></th>
-                </tr>
-                <tr ng-repeat="produto in list">
-                    <td>{{produto.codigo}}</td>
-                    <td>{{produto.nome}}</td>
-                    <td>{{produto.valor}}</td>
-                    <td>{{produto.quantidade}}</td>
-                    <td>{{produto.dataCadastro| date : "dd/MM/yyyy"}}</td>
-                    <td>{{produto.dataUltimaAlteracao| date : "dd/MM/yyyy"}}</td>
-                    <td>
-                        <button class="btn btn-warning" ng-click="editItem(produto.codigo)"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>Editar</button>
-                        <button class="btn btn-danger" ng-click="deleteItem(produto.codigo)"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Excluir</button>
-                    </td>
-                    </td>
-                </tr>
-            </table>
+                        <th>Name of Product</th>
+                        <th>Value</th>
+                        <th>Quantitie</th>
+                        <th>Date of Creation</th>
+                        <th>Date of Last Modification</th>
+                        <th>Actions</th>
+                    </tr>
+                    <tr ng-repeat="produto in ListProductCtrl.products | orderBy:ListProductCtrl.propertyName:ListProductCtrl.reverse">
+                        <td>{{produto.codigo}}</td>
+                        <td>{{produto.nome}}</td>
+                        <td>{{produto.valor}}</td>
+                        <td>{{produto.quantidade}}</td>
+                        <td>{{produto.dataCadastro| date : "dd/MM/yyyy"}}</td>
+                        <td>{{produto.dataUltimaAlteracao| date : "dd/MM/yyyy"}}</td>
+                        <td>
+                            <button class="btn btn-warning" ng-click="ListProductCtrl.editItem(produto)"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>Editar</button>
+                            <button class="btn btn-danger" ng-click="ListProductCtrl.deleteItem(produto.codigo)"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Excluir</button>
+                        </td>
+                        </td>
+                    </tr>
+                </table>
+            </div>
         </div>
     </div>
 </div>

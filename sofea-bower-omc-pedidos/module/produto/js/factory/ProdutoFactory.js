@@ -19,7 +19,6 @@ function ProdutoFactory() {
 
     function listarProdutosIn(response) {
         var lista = [];
-        console.log("Entrou no método = ProdutoFactory.listarProdutosIn " + response.data);
         if (response.data != undefined) {
             response.data.forEach(function(produto) {
                 lista.push({
