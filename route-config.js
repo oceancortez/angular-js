@@ -19,11 +19,36 @@ angular.module('omc')
             controller: 'ListarPedidoController'
         })
 
-        .when('/produto', {
-                templateUrl: 'sofea-bower-omc-pedidos/module/produto/view/produto.html',
-                controller: 'ProdutoController'
-            })
-            .otherwise({
-                redirectTo: '/'
-            })
+        .when('/product', {
+            templateUrl: 'sofea-bower-omc-pedidos/module/produto/view/product.html',
+            controller: 'CreateProductController'
+        })
+
+        .when('/product/create', {
+            templateUrl: 'sofea-bower-omc-pedidos/module/produto/view/createProduct.html',
+            controller: 'CreateProductController',
+            controllerAs: 'produtoCtrl'
+        })
+
+        .when('/product/list', {
+            templateUrl: 'sofea-bower-omc-pedidos/module/produto/view/listProduct.html',
+            controller: 'CreateProductController'
+        })
+
+        .when('/product/delete', {
+            templateUrl: 'sofea-bower-omc-pedidos/module/produto/view/deleteProduct.html',
+            controller: 'DeleteProductController',
+            controllerAs: 'DeleteProductCtrl'
+        })
+
+        .when('/product/test', {
+            templateUrl: 'sofea-bower-omc-pedidos/module/produto/view/testProduct.html',
+            controller: 'TestProductController',
+            controllerAs: 'TestProductCtrl'
+        })
+
+
+        .otherwise({
+            redirectTo: '/'
+        })
     });

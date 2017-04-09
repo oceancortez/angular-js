@@ -1,12 +1,17 @@
 angular.module('omc.produto')
 
-.controller('ProdutoController', ProdutoController);
+.controller('CreateProductController', CreateProductController);
 
-ProdutoController.$inject = ["$scope", "$location", "ProdutoFacade"];
+CreateProductController.$inject = ["$scope", "$location", "ProdutoFacade", "$routeParams"];
 
-function ProdutoController($scope, $location, ProdutoFacade) {
+function CreateProductController($scope, $location, ProdutoFacade, $routeParams) {
 
-    var vm = this;
+    var controller = this;
+    controller.alertMsg;
+
+    controller.produto = {
+        codigo: $routeParams.id
+    };
 
     $scope.list = new Array();
 
@@ -14,12 +19,12 @@ function ProdutoController($scope, $location, ProdutoFacade) {
 
         var promise = ProdutoFacade.listarProdutos();
         promise.then(function(produtos) {
-            console.log("Entrou no método = ProdutoController.findAll " + produtos);
+            console.log("Entrou no método = CreateProductController.findAll " + produtos);
             $scope.list = produtos;
         }, function error(response) {
             $scope.list = [{ "codigo": "MOCK", "codigoproduto": "MOCK", "codigoProduto": "MOCK", "dataCadastro": new Date(), "dataUltimaAlteracao": new Date() }];
             $scope.error = "Não foi possível carregar os produtos .";
-            console.log("Não foi possível carregar os produtos .o = ProdutoController.findAll ");
+            controller.alertMsg = "Não foi possível carregar os produtos .o = CreateProductController.findAll ";
         });
 
 
@@ -42,13 +47,28 @@ function ProdutoController($scope, $location, ProdutoFacade) {
     };
 
 
+    controller.save = function(produto) {
+        var promise = ProdutoFacade.cadastrarProduto(produto);
+        promise.then(function(retorno) {
+            controller.alertMsg = retorno;
+        }, function error(retorno) {
+            controller.alertMsg = retorno;
+        });
+    };
+
+
+    controller.refreshList = function() {
+        $location.path("/listar-clientes");
+    };
 
     $scope.editItem = function editItem(id) {
         $location.path("/contato/" + id);
     };
+    var path = $location.$$path;
+    if (path.indexOf('list') > 0) {
+        refreshList();
 
-
-    refreshList();
+    }
 
 
 };
