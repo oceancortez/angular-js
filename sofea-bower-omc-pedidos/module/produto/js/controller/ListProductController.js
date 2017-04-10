@@ -2,9 +2,9 @@ angular.module('omc.produto')
 
 .controller('ListProductController', ListProductController);
 
-ListProductController.$inject = ["$scope", "$location", "ProdutoFacade", "$routeParams", "ngProgressFactory", "$rootScope"];
+ListProductController.$inject = ["$scope", "$location", "ProductFacade", "$routeParams", "ngProgressFactory", "$rootScope"];
 
-function ListProductController($scope, $location, ProdutoFacade, $routeParams, ngProgressFactory, $rootScope) {
+function ListProductController($scope, $location, ProductFacade, $routeParams, ngProgressFactory, $rootScope) {
 
     var controller = this;
 
@@ -29,7 +29,7 @@ function ListProductController($scope, $location, ProdutoFacade, $routeParams, n
     function loadingListProducts() {
         controller.progressbar.start();
 
-        var promise = ProdutoFacade.listarProdutos();
+        var promise = ProductFacade.listProducts();
         promise.then(function(produtos) {
             console.log("Entrou no método = ListProductController.findAll " + produtos.length);
             controller.products = produtos;
@@ -45,7 +45,7 @@ function ListProductController($scope, $location, ProdutoFacade, $routeParams, n
 
     //TODO Terminar de refatorar    
     controller.deleteItem = function(id) {
-        ProdutoFacade.deleteOne(id, result, error)
+        ProductFacade.deleteOne(id, result, error)
             .success(function(result) {
                 if (result.data == "ok") {
                     alert("Registro removido.");

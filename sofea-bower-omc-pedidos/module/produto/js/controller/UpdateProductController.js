@@ -2,9 +2,9 @@ angular.module('omc.produto')
 
 .controller('UpdateProductController', UpdateProductController);
 
-UpdateProductController.$inject = ["$scope", "$location", "ProdutoFacade", "$routeParams", "$rootScope"];
+UpdateProductController.$inject = ["$scope", "$location", "ProductFacade", "$routeParams", "$rootScope"];
 
-function UpdateProductController($scope, $location, ProdutoFacade, $routeParams, $rootScope) {
+function UpdateProductController($scope, $location, ProductFacade, $routeParams, $rootScope) {
 
     var controller = this;
     controller.alertMsg = "";
@@ -26,7 +26,7 @@ function UpdateProductController($scope, $location, ProdutoFacade, $routeParams,
 
     controller.save = function(produto) {
         controller.progressbar.start();
-        var promise = ProdutoFacade.cadastrarProduto(produto);
+        var promise = ProductFacade.cadastrarProduto(produto);
         promise.then(function(retorno) {
             controller.alertMsg = retorno;
             controller.progressbar.complete();

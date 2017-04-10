@@ -1,25 +1,25 @@
 angular.module('omc.produto')
 
-.service('ProdutoFacade', ProdutoFacade);
+.service('ProductFacade', ProductFacade);
 
-ProdutoFacade.$inject = ['ProdutoService', 'ProdutoFactory', '$q'];
+ProductFacade.$inject = ['ProductService', 'ProductFactory', '$q'];
 
 
-function ProdutoFacade(ProdutoService, ProdutoFactory, $q) {
+function ProductFacade(ProductService, ProductFactory, $q) {
 
     var facade = {
-        listarProdutos: listarProdutos,
-        cadastrarProduto: cadastrarProduto
+        listProducts: listProducts,
+        createProduct: createProduct
     }
 
     return facade;
 
 
-    function listarProdutos() {
+    function listProducts() {
         return $q(function(resolve, reject) {
-            ProdutoService.findAll().then(function(response) {
+            ProductService.findAll().then(function(response) {
 
-                var retorno = ProdutoFactory.listarProdutosIn(response);
+                var retorno = ProductFactory.listProductsIn(response);
                 if (retorno) {
                     resolve(retorno);
                 } else {
@@ -32,11 +32,11 @@ function ProdutoFacade(ProdutoService, ProdutoFactory, $q) {
         });
     };
 
-    function cadastrarProduto(produto) {
+    function createProduct(produto) {
         return $q(function(resolve, reject) {
-            var out = ProdutoFactory.cadastrarProdutoOut(produto);
-            ProdutoService.cadastrarProduto(out).then(function(response) {
-                var retorno = ProdutoFactory.cadastrarProdutoIn(response);
+            var out = ProductFactory.createProductOut(produto);
+            ProductService.createProduct(out).then(function(response) {
+                var retorno = ProductFactory.createProductIn(response);
                 if (retorno) {
                     resolve(retorno);
                 } else {

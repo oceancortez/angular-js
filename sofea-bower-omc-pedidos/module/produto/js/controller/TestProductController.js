@@ -2,9 +2,9 @@ angular.module('omc.produto')
 
 .controller('TestProductController', TestProductController);
 
-TestProductController.$inject = ["$scope", "$location", "ProdutoFacade", "$routeParams"];
+TestProductController.$inject = ["$scope", "$location", "ProductFacade", "$routeParams"];
 
-function TestProductController($scope, $location, ProdutoFacade, $routeParams) {
+function TestProductController($scope, $location, ProductFacade, $routeParams) {
 
     var controller = this;
     controller.alertMsg = "";

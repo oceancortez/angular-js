@@ -2,9 +2,9 @@ angular.module('omc.produto')
 
 .controller('CreateProductController', CreateProductController);
 
-CreateProductController.$inject = ["$scope", "$location", "ProdutoFacade", "$routeParams", "ngProgressFactory"];
+CreateProductController.$inject = ["$scope", "$location", "ProductFacade", "$routeParams", "ngProgressFactory"];
 
-function CreateProductController($scope, $location, ProdutoFacade, $routeParams, ngProgressFactory) {
+function CreateProductController($scope, $location, ProductFacade, $routeParams, ngProgressFactory) {
 
     var controller = this;
     //Create a instance of progressbar
@@ -17,7 +17,7 @@ function CreateProductController($scope, $location, ProdutoFacade, $routeParams,
 
     controller.save = function(produto) {
         controller.progressbar.start();
-        var promise = ProdutoFacade.cadastrarProduto(produto);
+        var promise = ProductFacade.createProduct(produto);
         promise.then(function(retorno) {
             controller.alertMsg = retorno;
             controller.progressbar.complete();

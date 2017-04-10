@@ -2,9 +2,9 @@ angular.module('omc.produto')
 
 .controller('DeleteProductController', DeleteProductController);
 
-DeleteProductController.$inject = ["$scope", "$location", "ProdutoFacade", "$routeParams"];
+DeleteProductController.$inject = ["$scope", "$location", "ProductFacade", "$routeParams"];
 
-function DeleteProductController($scope, $location, ProdutoFacade, $routeParams) {
+function DeleteProductController($scope, $location, ProductFacade, $routeParams) {
 
     var controller = this;
     controller.alertMsg = "";
@@ -26,7 +26,7 @@ function DeleteProductController($scope, $location, ProdutoFacade, $routeParams)
 
     //TODO Terminar de refatorar    
     $scope.deleteItem = function(id) {
-        ProdutoFacade.deleteOne(id, result, error)
+        ProductFacade.deleteOne(id, result, error)
             .success(function(result) {
                 if (result.data == "ok") {
                     alert("Registro removido.");

@@ -1,15 +1,15 @@
 angular.module('omc.produto')
 
-.factory('ProdutoFactory', ProdutoFactory);
+.factory('ProductFactory', ProductFactory);
 
-ProdutoFactory.$inject = ['$log', '$q'];
+ProductFactory.$inject = ['$log', '$q'];
 
-function ProdutoFactory() {
+function ProductFactory() {
 
     var factory = {
-        listarProdutosIn: listarProdutosIn,
-        cadastrarProdutoOut: cadastrarProdutoOut,
-        cadastrarProdutoIn: cadastrarProdutoIn
+        listProductsIn: listProductsIn,
+        createProductOut: createProductOut,
+        createProductIn: createProductIn
 
     };
 
@@ -17,7 +17,7 @@ function ProdutoFactory() {
 
 
 
-    function listarProdutosIn(response) {
+    function listProductsIn(response) {
         var lista = [];
         if (response.data != undefined) {
             response.data.forEach(function(produto) {
@@ -32,11 +32,11 @@ function ProdutoFactory() {
             });
         }
 
-        console.log("Saiu do método = ProdutoFactory.listarProdutosIn " + response);
+        console.log("Saiu do método = ProductFactory.listarProdutosIn " + response);
         return lista;
     };
 
-    function cadastrarProdutoOut(produto) {
+    function createProductOut(produto) {
         return {
             "nome": produto.nome,
             "valor": produto.valor,
@@ -46,7 +46,7 @@ function ProdutoFactory() {
         }
     }
 
-    function cadastrarProdutoIn(response) {
+    function createProductIn(response) {
         var retorno;
         if (response.data != undefined) {
             retorno = response.data;
