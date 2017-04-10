@@ -13,7 +13,10 @@ function ProductService($http) {
 
     var service = {
         findAll: findAll,
-        createProduct: createProduct
+        createProduct: createProduct,
+        updateProduct: updateProduct,
+        deleteProduct: deleteProduct,
+        listBy: listBy
     }
 
     return service;
@@ -31,14 +34,14 @@ function ProductService($http) {
 
         function updateProduct(out) {
         console.log("Inside method = productService.updateProduct() @PUT ");
-        return $http.post("http://localhost/omc-pedidos-multi-jta-jndi-jpa-h-jersey-test-backend/product/update", out, {
+        return $http.put("http://localhost/omc-pedidos-multi-jta-jndi-jpa-h-jersey-test-backend/product/update", out, {
             headers: _headers
         });
     };
 
         function deleteProduct(out) {
         console.log("Inside method = productService.deleteProduct() @DELETE ");
-        return $http.post("http://localhost/omc-pedidos-multi-jta-jndi-jpa-h-jersey-test-backend/product/delete", out, {
+        return $http.delete("http://localhost/omc-pedidos-multi-jta-jndi-jpa-h-jersey-test-backend/product/delete", out, {
             headers: _headers
         });
     };
@@ -46,7 +49,7 @@ function ProductService($http) {
     
         function listBy(out) {
         console.log("Inside method = productService.deleteProduct() @DELETE ");
-        return $http.post("http://localhost/omc-pedidos-multi-jta-jndi-jpa-h-jersey-test-backend/product/list-by", out, {
+        return $http.get("http://localhost/omc-pedidos-multi-jta-jndi-jpa-h-jersey-test-backend/product/list-by", out, {
             headers: _headers
         });
     };

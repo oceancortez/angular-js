@@ -9,7 +9,8 @@ function ProductFacade(ProductService, ProductFactory, $q) {
 
     var facade = {
         listProducts: listProducts,
-        createProduct: createProduct
+        createProduct: createProduct,
+        updateProduct: updateProduct
     }
 
     return facade;
@@ -46,6 +47,23 @@ function ProductFacade(ProductService, ProductFactory, $q) {
             });
         });
     };
+
+        function updateProduct(produto) {
+        return $q(function(resolve, reject) {
+            var out = ProductFactory.updateProductOut(produto);
+            ProductService.updateProduct(out).then(function(response) {
+                var retorno = ProductFactory.updateProductIn(response);
+                if (retorno) {
+                    resolve(retorno);
+                } else {
+                    retorno.error = retorno.message;
+                    reject(retorno);
+                }
+            });
+        });
+    };
+
+    
 
 
 

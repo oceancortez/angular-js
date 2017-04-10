@@ -9,42 +9,42 @@ function ProductFactory() {
     var factory = {
         listProductsIn: listProductsIn,
         createProductOut: createProductOut,
-        createProductIn: createProductIn
-
+        createProductIn: createProductIn,
+        updateProductOut: updateProductOut,
+        updateProductIn: updateProductIn
     };
 
     return factory;
 
 
-
     function listProductsIn(response) {
         var lista = [];
         if (response.data != undefined) {
-            response.data.forEach(function(produto) {
+            response.data.forEach(function(product) {
                 lista.push({
-                    "codigo": produto.codigo,
-                    "nome": produto.nome,
-                    "valor": produto.valor,
-                    "quantidade": produto.quantidade,
-                    "dataCadastro": produto.dataCadastro,
-                    "dataUltimaAlteracao": produto.dataUltimaAlteracao
+                    "codigo": product.codigo,
+                    "nome": product.nome,
+                    "valor": product.valor,
+                    "quantidade": product.quantidade,
+                    "dataCadastro": product.dataCadastro,
+                    "dataUltimaAlteracao": product.dataUltimaAlteracao
                 });
             });
         }
 
-        console.log("Saiu do método = ProductFactory.listarProdutosIn " + response);
+        console.log("Saiu do método = ProductFactory.listarproductsIn " + response);
         return lista;
     };
 
-    function createProductOut(produto) {
+    function createProductOut(product) {
         return {
-            "nome": produto.nome,
-            "valor": produto.valor,
-            "quantidade": produto.quantidade,
-            "dataCadastro": produto.dataCadastro,
-            "dataUltimaAlteracao": produto.dataUltimaAlteracao
+            "nome": product.nome,
+            "valor": product.valor,
+            "quantidade": product.quantidade,
+            "dataCadastro": product.dataCadastro,
+            "dataUltimaAlteracao": product.dataUltimaAlteracao
         }
-    }
+    };
 
     function createProductIn(response) {
         var retorno;
@@ -53,6 +53,25 @@ function ProductFactory() {
         }
 
         return retorno;
-    }
+    };
+
+    function updateProductOut(product) {
+        return {
+            "codigo": product.codigo,
+            "nome": product.nome,
+            "valor": product.valor,
+            "quantidade": product.quantidade,
+            "dataCadastro": product.dataCadastro,
+            "dataUltimaAlteracao": product.dataUltimaAlteracao
+        }
+    };
+
+    function updateProductIn(response) {
+        var retorno;
+        if (response.data != undefined) {
+            retorno = response.data;
+        }
+        return retorno;
+    };
 
 };
