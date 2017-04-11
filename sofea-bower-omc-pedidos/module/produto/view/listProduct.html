@@ -1,4 +1,7 @@
-<div data-ng-controller="ProductController as ProductCtrl">
+<!--Depois que eu comentei esse trecho, parou de dar erro no direcionamento de tela-->
+<!--data-ng-controller="ProductController as ProductCtrl"-->
+
+<div id="list"> 
     <div>
     <h1>List Products</h1>
         <div class="panel panel-default">
@@ -37,6 +40,4 @@
             </div>
         </div>
     </div>
-
-        <div ng-include="'sofea-bower-omc-pedidos/module/produto/view/updateProduct.html'" data-ng-if="ProductCtrl.showUpdate"> </div>
 </div>

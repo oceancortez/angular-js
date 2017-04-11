@@ -128,6 +128,10 @@ function ProductController($scope, $location, ProductFacade, $routeParams, ngPro
         promise.then(function(retorno) {
             controller.alertMsg = retorno;
             controller.progressbar.complete();
+            controller.buildListProducts();
+            controller.buildShowViews(true, false, false, false);
+            controller.alertMsg = "";
+            
         }, function error(retorno) {
             controller.alertMsg = retorno;
         });
@@ -139,12 +143,18 @@ function ProductController($scope, $location, ProductFacade, $routeParams, ngPro
         promise.then(function(retorno) {
             controller.alertMsg = retorno;
             controller.progressbar.complete();
-           // controller.product = {};
+            controller.alertMsg = "";
             $rootScope.product = {};  
             controller.buildShowViews(true, false, false, false);
         }, function error(retorno) {
             controller.alertMsg = retorno;
         });
+    };
+
+    controller.updateCancel = function(anchor){
+        controller.buildShowViews(true, false, false, false);
+        controller.gotoAnchor(anchor);
+       // $location.path("/product/list");
     };
 
 

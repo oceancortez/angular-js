@@ -1,4 +1,4 @@
-<div data-ng-controller="ProductController as ProductCtrl">
+<div>
     <div class="row">
         <div class="col-sm-9 pager">
 
@@ -74,7 +74,7 @@
                                                     <div class="col-sm-offset-1 col-sm-10">
                                                         <button type="submit" class="btn btn-primary btn-lg btn-block" data-ng-click="ProductCtrl.updateProduct(product)" ng-disabled="!(product.nome)">Update!</button>
 
-                                                        <button class="btn btn-default btn-lg btn-block" onclick="document.location.hash = '#/listar-products'" data-ng-if="!isUpdate()">Cancelar</button>
+                                                        <button class="btn btn-default btn-lg btn-block" ng-click="ProductCtrl.updateCancel('list');">Cancel</button>
 
                                                     </div>
                                                 </div>
@@ -84,5 +84,4 @@
                                 </div>
                         </form>
                         </div>
-
                     </div>
