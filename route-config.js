@@ -20,33 +20,23 @@ angular.module('omc')
         })
 
         .when('/product', {
-            templateUrl: 'sofea-bower-omc-pedidos/module/produto/view/product.html',
-            controller: 'ProductController',
-            controllerAs: 'ProductCtrl'
+            templateUrl: 'sofea-bower-omc-pedidos/module/produto/view/product.html'
         })
 
         .when('/product/create', {
-            templateUrl: 'sofea-bower-omc-pedidos/module/produto/view/createProduct.html',
-            controller: 'ProductController',
-            controllerAs: 'ProdutoCtrl'
+            templateUrl: 'sofea-bower-omc-pedidos/module/produto/view/createProduct.html'
         })
 
         .when('/product/update', {
-            templateUrl: 'sofea-bower-omc-pedidos/module/produto/view/updateProduct.html',
-            controller: 'ProductController',
-            controllerAs: 'ProductCtrl'
+            templateUrl: 'sofea-bower-omc-pedidos/module/produto/view/updateProduct.html'
         })
 
         .when('/product/list', {
-            templateUrl: 'sofea-bower-omc-pedidos/module/produto/view/listProduct.html',
-            controller: 'ProductController',
-            controllerAs: 'ProductCtrl'
+            templateUrl: 'sofea-bower-omc-pedidos/module/produto/view/listProduct.html'
         })
 
         .when('/product/delete', {
-            templateUrl: 'sofea-bower-omc-pedidos/module/produto/view/deleteProduct.html',
-            controller: 'DeleteProductController',
-            controllerAs: 'DeleteProductCtrl'
+            templateUrl: 'sofea-bower-omc-pedidos/module/produto/view/deleteProduct.html'
         })
 
         .when('/product/test', {

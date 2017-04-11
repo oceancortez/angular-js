@@ -1,5 +1,8 @@
 <h1> > product</h1>
 <div data-ng-controller="ProductController as ProductCtrl">
+
+ 
+
     <div class="btn-group" role="group">
 
         <button class="btn btn-success" ng-click="ProductCtrl.showViews('showCreate')"> 
@@ -29,5 +32,5 @@
     <div ng-include="'sofea-bower-omc-pedidos/module/produto/view/deleteProduct.html'" data-ng-if="ProductCtrl.showDelete"> </div>
     <div ng-include="'sofea-bower-omc-pedidos/module/produto/view/createProduct.html'" data-ng-if="ProductCtrl.showCreate"> </div>
     <div ng-include="'sofea-bower-omc-pedidos/module/produto/view/testProduct.html'" data-ng-if="ProductCtrl.showTest"> </div>
-
+    
 </div>

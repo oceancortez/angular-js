@@ -1,7 +1,6 @@
-<div id="anchor{{x}}" ng-controller="ProductController as ProductCtrl">
-     <div ng-include="'sofea-bower-omc-pedidos/module/produto/view/updateProduct.html'" data-ng-if="ProductCtrl.showUpdate"> </div>
+<div data-ng-controller="ProductController as ProductCtrl">
+    <div>
     <h1>List Products</h1>
-    <div ng-if="ProductCtrl.products.length">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h2 class="panel-title text-center">Products</h2>
@@ -29,7 +28,7 @@
                         <td>{{product.dataCadastro| date : "dd/MM/yyyy"}}</td>
                         <td>{{product.dataUltimaAlteracao| date : "dd/MM/yyyy"}}</td>
                         <td>
-                            <button class="btn btn-warning" ng-click="ProductCtrl.update(product); ProductCtrl.gotoAnchor(1);"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>Update</button>
+                            <button class="btn btn-warning" ng-click="ProductCtrl.update(product, 'update');"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>Update</button>
                             <button class="btn btn-danger" ng-click="ProductCtrl.delete(product.codigo)"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Delete</button>
                         </td>
                         </td>
@@ -38,4 +37,6 @@
             </div>
         </div>
     </div>
+
+        <div ng-include="'sofea-bower-omc-pedidos/module/produto/view/updateProduct.html'" data-ng-if="ProductCtrl.showUpdate"> </div>
 </div>

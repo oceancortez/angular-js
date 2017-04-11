@@ -13,8 +13,10 @@ function ProductController($scope, $location, ProductFacade, $routeParams, ngPro
  
     controller.propertyName = 'codigo';
     controller.reverse = true;
-    controller.products = new Array();
+
+    controller.products = [];
     controller.productNew;
+    controller.anchor = "";
 
     if($routeParams.id){
          controller.product = {
@@ -31,10 +33,17 @@ function ProductController($scope, $location, ProductFacade, $routeParams, ngPro
     };
 
 
+    controller.gotoDiv = function (anchor){
+        $location.hash(anchor);
+        $anchorScroll();
+    };
+
+
     controller.showViews = function(view) {
         switch (view) {
             case 'showList':
                 controller.buildShowViews(true, false, false, false);
+                controller.buildListProducts();
                 break;
             case 'showCreate':
                  controller.buildShowViews(false, true, false, false);
@@ -54,15 +63,14 @@ function ProductController($scope, $location, ProductFacade, $routeParams, ngPro
     };
 
     controller.buildListProducts = function (){
-        controller.loadingListProducts();
-        controller.sortBy = function(propertyName) {
-        controller.reverse = (controller.propertyName === propertyName) ? !controller.reverse : false;
-        controller.propertyName = propertyName;
-
-    }
+            controller.loadingListProducts();        
+            controller.sortBy = function(propertyName) {
+            controller.reverse = (controller.propertyName === propertyName) ? !controller.reverse : false;
+            controller.propertyName = propertyName;
+        }
     };
 
-    controller.loadingListProducts = function () {
+     controller.loadingListProducts = function () {
         controller.progressbar.start();
         var promise = ProductFacade.listProducts();
         promise.then(function(produtos) {
@@ -91,10 +99,10 @@ function ProductController($scope, $location, ProductFacade, $routeParams, ngPro
       }
     };
 
-    controller.update = function (product) {
+    controller.update = function (product, anchor) {
         $rootScope.product = product;
         controller.buildShowViews(false, false, true, false);
-        controller.gotoAnchor(1);
+        controller.gotoAnchor(anchor);
     };
 
     //TODO Terminar de refatorar    
@@ -158,6 +166,7 @@ function ProductController($scope, $location, ProductFacade, $routeParams, ngPro
             
     };
 
+    controller.gotoDiv(controller.anchor);
     controller.buildListProducts();
     controller.buildShowViews(false, false, false, false);
 
