@@ -11,6 +11,12 @@ function ProductService($http) {
         'Content-Type': 'application/json'
     };
 
+    var _headersDelete = {
+        'Access-Control-Allow-Methods' : ['OPTIONS', 'GET', 'POST', 'PUT', 'DELETE'],
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+    };
+
     var service = {
         findAll: findAll,
         createProduct: createProduct,
@@ -41,8 +47,8 @@ function ProductService($http) {
 
         function deleteProduct(out) {
         console.log("Inside method = productService.deleteProduct() @DELETE ");
-        return $http.delete("http://localhost/omc-pedidos-multi-jta-jndi-jpa-h-jersey-test-backend/product/delete", out, {
-            headers: _headers
+        return $http.delete("http://localhost/omc-pedidos-multi-jta-jndi-jpa-h-jersey-test-backend/product/delete?productId=" + out.codigo, {
+            headers: _headersDelete
         });
     };
 

@@ -10,7 +10,8 @@ function ProductFacade(ProductService, ProductFactory, $q) {
     var facade = {
         listProducts: listProducts,
         createProduct: createProduct,
-        updateProduct: updateProduct
+        updateProduct: updateProduct,
+        deleteProduct: deleteProduct
     }
 
     return facade;
@@ -28,7 +29,7 @@ function ProductFacade(ProductService, ProductFactory, $q) {
                     reject(retorno);
                 }
             }, function error(response) {
-                reject(reject);
+                reject(response);
             });
         });
     };
@@ -37,7 +38,7 @@ function ProductFacade(ProductService, ProductFactory, $q) {
         return $q(function(resolve, reject) {
             var out = ProductFactory.createProductOut(produto);
             ProductService.createProduct(out).then(function(response) {
-                var retorno = ProductFactory.createProductIn(response);
+                var retorno = ProductFactory.productIn(response);
                 if (retorno) {
                     resolve(retorno);
                 } else {
@@ -52,11 +53,25 @@ function ProductFacade(ProductService, ProductFactory, $q) {
         return $q(function(resolve, reject) {
             var out = ProductFactory.updateProductOut(produto);
             ProductService.updateProduct(out).then(function(response) {
-                var retorno = ProductFactory.updateProductIn(response);
+                var retorno = ProductFactory.productIn(response);
                 if (retorno) {
                     resolve(retorno);
                 } else {
                     retorno.error = retorno.message;
+                    reject(retorno);
+                }
+            });
+        });
+    };
+
+        function deleteProduct(product) {
+        return $q(function(resolve, reject) {
+            var out = ProductFactory.deleteProductOut(product);
+            ProductService.deleteProduct(out).then(function(response) {
+                var retorno = ProductFactory.productIn(response);
+                if (retorno && (!(retorno.indexOf('REJECT') > 0))) {
+                    resolve(retorno);
+                } else {
                     reject(retorno);
                 }
             });

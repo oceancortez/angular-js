@@ -1,10 +1,8 @@
-<div data-ng-controller="ProductController as ProductCtrl">
-    <h3> >deleteProduct</h3>
-
+<div>
     <div class="row">
         <div class="col-sm-9 pager">
 
-            <div class="alert alert-success fade in alert-dismissable" style="margin-top:18px;">
+            <div class="alert alert-success fade in alert-dismissable" style="margin-top:18px;" ng-if="ProductCtrl.alertMsg">
                 <strong>Info! {{ProductCtrl.alertMsg}}</strong>
                 <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">X</a>
             </div>
@@ -12,5 +10,78 @@
 
         </div>
     </div>
+    <div class="jumbotron" id="update">
+        <div class="container">
+            <div class="page-header">
+                <h3 class="text-center" data-ng-bind="labelCadastro"></h3>
+                <div class="col-sm-12">
+                    <div class="panel-body">
 
-</div>
+                        <form>
+
+                            <div class="col-sm-9">
+                                <div class="row">
+
+                                    <div class="col-sm-9">
+                                        <div class="form-group">
+                                            <label class="label-control" for="product-codigo">Codigo</label>
+                                            <input type="text" class="form-control" id="product-codigo" readonly="readonly" ng-model="product.codigo">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-9">
+                                        <div class="form-group">
+                                            <label for="nome">Nome do product</label>
+                                            <input type="text" class="form-control" id="nome" placeholder="Nome do product" ng-model="product.nome">
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-sm-9">
+                                        <div class="form-group">
+                                            <label for="valor">Valor do product</label>
+                                            <input type="text" class="form-control" id="valor" placeholder="Valor" ng-model="product.valor">
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-sm-9">
+                                        <div class="form-group">
+                                            <label for="quantidade">Quantidade</label>
+                                            <input type="text" class="form-control" id="quantidade" placeholder="quantidade" ng-model="product.quantidade">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-9">
+                                        <div class="form-group">
+                                            <label for="dataCadastro">Data de dataCadastro</label>
+                                            <input type="text" class="form-control" id="dataCadastro" readonly="readonly" placeholder="Data de dataCadastro" ng-model="product.dataCadastro" ng-required="false">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-9">
+                                        <div class="form-group">
+                                            <label for="dataUltimaAlteracao">Data de UltimaAlteracao</label>
+                                            <input type="text" class="form-control" id="dataUltimaAlteracao" readonly="readonly" placeholder="Data de UltimaAlteracao" ng-model="product.dataUltimaAlteracao" ng-required="false">
+                                        </div>
+                                    </div>
+                                    <!--data-ng-if="!isUpdate()"-->
+                                    <div class="col-sm-12">
+                                        <div class="row">
+
+                                            <div class="col-sm-9">
+                                                <div class="form-group">
+                                                    <div class="col-sm-offset-1 col-sm-10">
+                                                        <button type="submit" class="btn btn-danger btn-lg btn-block" data-ng-click="ProductCtrl.delete(product)" ng-disabled="!(product.nome)">Delete!</button>
+
+                                                        <button class="btn btn-default btn-lg btn-block" ng-click="ProductCtrl.cancel('list');">Cancel</button>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                        </form>
+                        </div>
+                    </div>

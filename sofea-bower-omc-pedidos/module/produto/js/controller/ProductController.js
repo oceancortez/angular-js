@@ -79,9 +79,8 @@ function ProductController($scope, $location, ProductFacade, $routeParams, ngPro
             controller.progressbar.complete();
              controller.gotoAnchor(0);
         }, function error(response) {
-            controller.products = [{ "codigo": "MOCK", "codigoproduto": "MOCK", "codigoProduto": "MOCK", "dataCadastro": new Date(), "dataUltimaAlteracao": new Date() }];
-            controller.error = "Não foi possível carregar os produtos .";
-            controller.alertMsg = "Não foi possível carregar os produtos .o = ListProductController.findAll ";
+            //controller.products = [{ "codigo": "MOCK", "codigoproduto": "MOCK", "codigoProduto": "MOCK", "dataCadastro": new Date(), "dataUltimaAlteracao": new Date() }];
+            controller.alertMsg = 'Dont possible loading the products >> ' + response.status + ' / ' + response.statusText;
         });
     };
 
@@ -99,26 +98,33 @@ function ProductController($scope, $location, ProductFacade, $routeParams, ngPro
       }
     };
 
-    controller.update = function (product, anchor) {
+    controller.listUpdate = function (product, anchor) {
         $rootScope.product = product;
         controller.buildShowViews(false, false, true, false);
         controller.gotoAnchor(anchor);
     };
 
+    
+    controller.listDelete = function (product, anchor) {
+        $rootScope.product = product;
+        controller.buildShowViews(false, false, false, true);
+        controller.gotoAnchor(anchor);
+    };
+
     //TODO Terminar de refatorar    
-    controller.delete = function(id) {
-        ProductFacade.deleteOne(id, result, error)
-            .success(function(result) {
-                if (result.data == "ok") {
-                    alert("Registro removido.");
-                    loadingListProducts();
-                } else {
-                    alert("Não foi possível remover o registro.");
-                }
-            })
-            .error(function(error) {
-                alert("Não foi possível remover o registro.");
-            });
+    controller.delete = function(product) {
+         controller.progressbar.start();
+        var promise = ProductFacade.deleteProduct(product);
+        promise.then(function(retorno) {
+            controller.alertMsg = retorno;
+            controller.progressbar.complete();
+            controller.alertMsg = "";
+            $rootScope.product = {};
+            controller.buildListProducts();  
+            controller.buildShowViews(true, false, false, false);
+        }, function error(retorno) {
+            controller.alertMsg = retorno;
+        });
     };
 
 
@@ -137,7 +143,7 @@ function ProductController($scope, $location, ProductFacade, $routeParams, ngPro
         });
     };
 
-    controller.updateProduct = function (product) {
+    controller.update = function (product) {
         controller.progressbar.start();
         var promise = ProductFacade.updateProduct(product);
         promise.then(function(retorno) {
@@ -151,13 +157,10 @@ function ProductController($scope, $location, ProductFacade, $routeParams, ngPro
         });
     };
 
-    controller.updateCancel = function(anchor){
+    controller.cancel = function(anchor){
         controller.buildShowViews(true, false, false, false);
         controller.gotoAnchor(anchor);
-       // $location.path("/product/list");
     };
-
-
 
     controller.refreshList = function() {
         $location.path("/listar-clientes");

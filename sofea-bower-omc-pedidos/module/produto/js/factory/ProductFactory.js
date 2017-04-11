@@ -2,16 +2,16 @@ angular.module('omc.produto')
 
 .factory('ProductFactory', ProductFactory);
 
-ProductFactory.$inject = ['$log', '$q'];
+ProductFactory.$inject = ['$log', '$httpParamSerializer'];
 
-function ProductFactory() {
+function ProductFactory($httpParamSerializer) {
 
     var factory = {
         listProductsIn: listProductsIn,
-        createProductOut: createProductOut,
-        createProductIn: createProductIn,
+        productIn: productIn,
+        createProductOut: createProductOut,    
         updateProductOut: updateProductOut,
-        updateProductIn: updateProductIn
+        deleteProductOut: deleteProductOut
     };
 
     return factory;
@@ -46,15 +46,6 @@ function ProductFactory() {
         }
     };
 
-    function createProductIn(response) {
-        var retorno;
-        if (response.data != undefined) {
-            retorno = response.data;
-        }
-
-        return retorno;
-    };
-
     function updateProductOut(product) {
         return {
             "codigo": product.codigo,
@@ -66,7 +57,19 @@ function ProductFactory() {
         }
     };
 
-    function updateProductIn(response) {
+    function deleteProductOut(product) {
+        return {
+             "codigo": product.codigo
+            //,
+            // "nome": product.nome,
+            // "valor": product.valor,
+            // "quantidade": product.quantidade,
+            // "dataCadastro": product.dataCadastro,
+            // "dataUltimaAlteracao": product.dataUltimaAlteracao
+        }
+    };
+
+    function productIn(response) {
         var retorno;
         if (response.data != undefined) {
             retorno = response.data;
