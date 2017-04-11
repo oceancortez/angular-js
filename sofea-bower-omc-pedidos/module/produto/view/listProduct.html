@@ -1,4 +1,5 @@
 <div id="anchor{{x}}" ng-controller="ProductController as ProductCtrl">
+     <div ng-include="'sofea-bower-omc-pedidos/module/produto/view/updateProduct.html'" data-ng-if="ProductCtrl.showUpdate"> </div>
     <h1>List Products</h1>
     <div ng-if="ProductCtrl.products.length">
         <div class="panel panel-default">
@@ -37,5 +38,4 @@
             </div>
         </div>
     </div>
-     <div ng-include="'sofea-bower-omc-pedidos/module/produto/view/updateProduct.html'" data-ng-if="ProductCtrl.showUpdate"> </div>
 </div>

@@ -10,17 +10,11 @@ function ProductController($scope, $location, ProductFacade, $routeParams, ngPro
     controller.alertMsg = "";
         //Create a instance of progressbar
     controller.progressbar = ngProgressFactory.createInstance();
-
-    controller.showList = false;
-    controller.showCreate = false;
-    controller.showUpdate = false;
-    controller.showDelete = false;
-
-
-    
+ 
     controller.propertyName = 'codigo';
     controller.reverse = true;
     controller.products = new Array();
+    controller.productNew;
 
     if($routeParams.id){
          controller.product = {
@@ -40,59 +34,33 @@ function ProductController($scope, $location, ProductFacade, $routeParams, ngPro
     controller.showViews = function(view) {
         switch (view) {
             case 'showList':
-                controller.showList = true;
-                controller.showCreate = false;
-                controller.showUpdate = false;
-                controller.showDelete = false;
-                //controller.buildListProducts();
+                controller.buildShowViews(true, false, false, false);
                 break;
             case 'showCreate':
-                controller.showList = false;
-                controller.showCreate = true;
-                controller.showUpdate = false;
-                controller.showDelete = false;
+                 controller.buildShowViews(false, true, false, false);
                 break;
             case 'showUpdate':
-                controller.showList = false;
-                controller.showCreate = false;
-                controller.showUpdate = true;
-                controller.showDelete = false;
+                controller.buildShowViews(false, false, true, false);
                 break;
             case 'showDelete':
-                controller.showList = false;
-                controller.showCreate = false;
-                controller.showUpdate = false;
-                controller.showDelete = true;
+                controller.buildShowViews(false, false, false, true);
                 break;
              case 'showDelete':
-                controller.showList = false;
-                controller.showCreate = false;
-                controller.showUpdate = false;
-                controller.showDelete = true;
+                 controller.buildShowViews(false, false, false, true);
                 break;    
             default:
                 break;
         }
-    }
+    };
 
     controller.buildListProducts = function (){
         controller.loadingListProducts();
-
         controller.sortBy = function(propertyName) {
         controller.reverse = (controller.propertyName === propertyName) ? !controller.reverse : false;
         controller.propertyName = propertyName;
 
     }
-    }
-
-    controller.testMsg = function() {
-        controller.alertMsg = "Teste OK";
     };
-
-    function testMessage() {
-        controller.alertMsg = "Teste OK";
-    };
-
 
     controller.loadingListProducts = function () {
         controller.progressbar.start();
@@ -125,8 +93,7 @@ function ProductController($scope, $location, ProductFacade, $routeParams, ngPro
 
     controller.update = function (product) {
         $rootScope.product = product;
-        controller.showUpdate = true;
-        controller.showList = false;
+        controller.buildShowViews(false, false, true, false);
         controller.gotoAnchor(1);
     };
 
@@ -147,9 +114,9 @@ function ProductController($scope, $location, ProductFacade, $routeParams, ngPro
     };
 
 
-    controller.save = function (product) {
+    controller.save = function (productNew) {
         controller.progressbar.start();
-        var promise = ProductFacade.createProduct(product);
+        var promise = ProductFacade.createProduct(productNew);
         promise.then(function(retorno) {
             controller.alertMsg = retorno;
             controller.progressbar.complete();
@@ -164,9 +131,9 @@ function ProductController($scope, $location, ProductFacade, $routeParams, ngPro
         promise.then(function(retorno) {
             controller.alertMsg = retorno;
             controller.progressbar.complete();
-            controller.showList = true;
-            controller.showUpdate = false;
-             $location.path("/product");
+           // controller.product = {};
+            $rootScope.product = {};  
+            controller.buildShowViews(true, false, false, false);
         }, function error(retorno) {
             controller.alertMsg = retorno;
         });
@@ -183,7 +150,15 @@ function ProductController($scope, $location, ProductFacade, $routeParams, ngPro
     //     loadingListProducts();
     // }
 
+    controller.buildShowViews = function (showList, showCreate, showUpdate, showDelete){
+        controller.showList = showList;
+        controller.showCreate = showCreate;
+        controller.showUpdate = showUpdate;
+        controller.showDelete = showDelete;   
+            
+    };
+
     controller.buildListProducts();
-    testMessage();
+    controller.buildShowViews(false, false, false, false);
 
 };
