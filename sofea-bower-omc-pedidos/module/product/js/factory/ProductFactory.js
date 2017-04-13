@@ -1,4 +1,4 @@
-angular.module('omc.produto')
+angular.module('omc.product')
 
 .factory('ProductFactory', ProductFactory);
 

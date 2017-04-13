@@ -20,27 +20,27 @@ angular.module('omc')
         })
 
         .when('/product', {
-            templateUrl: 'sofea-bower-omc-pedidos/module/produto/view/product.html'
+            templateUrl: 'sofea-bower-omc-pedidos/module/product/view/product.html'
         })
 
         .when('/product/create', {
-            templateUrl: 'sofea-bower-omc-pedidos/module/produto/view/createProduct.html'
+            templateUrl: 'sofea-bower-omc-pedidos/module/product/view/createProduct.html'
         })
 
         .when('/product/update', {
-            templateUrl: 'sofea-bower-omc-pedidos/module/produto/view/updateProduct.html'
+            templateUrl: 'sofea-bower-omc-pedidos/module/product/view/updateProduct.html'
         })
 
         .when('/product/list', {
-            templateUrl: 'sofea-bower-omc-pedidos/module/produto/view/listProduct.html'
+            templateUrl: 'sofea-bower-omc-pedidos/module/product/view/listProduct.html'
         })
 
         .when('/product/delete', {
-            templateUrl: 'sofea-bower-omc-pedidos/module/produto/view/deleteProduct.html'
+            templateUrl: 'sofea-bower-omc-pedidos/module/product/view/deleteProduct.html'
         })
 
         .when('/product/test', {
-            templateUrl: 'sofea-bower-omc-pedidos/module/produto/view/testProduct.html',
+            templateUrl: 'sofea-bower-omc-pedidos/module/product/view/testProduct.html',
             controller: 'TestProductController',
             controllerAs: 'TestProductCtrl'
         })
