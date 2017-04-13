@@ -15,7 +15,7 @@ function ProductController($scope, $location, ProductFacade, $routeParams, ngPro
     controller.reverse = true;
 
     controller.products = [];
-    controller.productNew;
+    controller.product = {'test':'test'};
     controller.anchor = "";
 
     if($routeParams.id){

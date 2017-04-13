@@ -1,14 +1,20 @@
+<div>xxxxxxxxxxxxxxxxxxxxxxxx</div>
+
+
 <div>
+    <h1>You here in form product</h1>
     <div class="row">
         <div class="col-sm-9 pager">
 
             <div class="alert alert-success fade in alert-dismissable" style="margin-top:18px;" ng-if="alertMsg">
                 <!--<strong>Info! {{alertMsg}}</strong>-->
+            {{$id}}
+            {{product}}
                 <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">X</a>
             </div>
         </div>
     </div>
-    <div class="jumbotron">
+    <div class="jumbotron" ng-transclude>
         <div class="container">
             <div class="page-header">
                 <h3 class="text-center" data-ng-bind="labelCadastro"></h3>
@@ -22,23 +28,23 @@
 
                                     <div class="col-sm-9">
                                         <div class="form-group">
-                                            <label class="label-control" for="productNew-codigo">Codigo</label>
-                                            <input type="text" class="form-control" id="productNew-codigo" readonly="readonly" ng-model="productNew.codigo">
+                                            <label class="label-control" for="product-codigo">Codigo</label>
+                                            <input type="text" class="form-control" id="product-codigo" readonly="readonly" ng-model="product.codigo">
                                         </div>
                                     </div>
 
                                     <div class="col-sm-9">
                                         <div class="form-group">
-                                            <label for="nome">Nome do productNew</label>
-                                            <input type="text" class="form-control" id="nome" placeholder="Nome do productNew" ng-model="productNew.nome">
+                                            <label for="nome">Nome do product</label>
+                                            <input type="text" class="form-control" id="nome" placeholder="Nome do product" ng-model="product.nome">
                                         </div>
                                     </div>
 
 
                                     <div class="col-sm-9">
                                         <div class="form-group">
-                                            <label for="valor">Valor do productNew</label>
-                                            <input type="text" class="form-control" id="valor" placeholder="Valor" ng-model="productNew.valor">
+                                            <label for="valor">Valor do product</label>
+                                            <input type="text" class="form-control" id="valor" placeholder="Valor" ng-model="product.valor">
                                         </div>
                                     </div>
 
@@ -46,21 +52,21 @@
                                     <div class="col-sm-9">
                                         <div class="form-group">
                                             <label for="quantidade">Quantidade</label>
-                                            <input type="text" class="form-control" id="quantidade" placeholder="quantidade" ng-model="productNew.quantidade">
+                                            <input type="text" class="form-control" id="quantidade" placeholder="quantidade" ng-model="product.quantidade">
                                         </div>
                                     </div>
 
                                     <div class="col-sm-9">
                                         <div class="form-group">
                                             <label for="dataCadastro">Data de dataCadastro</label>
-                                            <input type="date" class="form-control" id="dataCadastro" placeholder="Data de dataCadastro" ng-model="productNew.dataCadastro" ng-required="false">
+                                            <input type="date" class="form-control" id="dataCadastro" placeholder="Data de dataCadastro" ng-model="product.dataCadastro" ng-required="false">
                                         </div>
                                     </div>
 
                                     <div class="col-sm-9">
                                         <div class="form-group">
                                             <label for="dataUltimaAlteracao">Data de UltimaAlteracao</label>
-                                            <input type="date" class="form-control" id="dataUltimaAlteracao" placeholder="Data de UltimaAlteracao" ng-model="productNew.dataUltimaAlteracao" ng-required="false">
+                                            <input type="date" class="form-control" id="dataUltimaAlteracao" placeholder="Data de UltimaAlteracao" ng-model="product.dataUltimaAlteracao" ng-required="false">
                                         </div>
                                     </div>
                                     <!--data-ng-if="!isUpdate()"-->
@@ -70,7 +76,7 @@
                                             <div class="col-sm-9">
                                                 <div class="form-group">
                                                     <div class="col-sm-offset-1 col-sm-10">
-                                                        <button type="submit" class="btn btn-primary btn-lg btn-block" data-ng-click="save(productNew)" ng-disabled="!(productNew.nome)">Cadastrar!</button>
+                                                        <button type="submit" class="btn btn-primary btn-lg btn-block" data-ng-click="save(product)" ng-disabled="!(product.nome)">Cadastrar!</button>
 
                                                         <button class="btn btn-default btn-lg btn-block" onclick="document.location.hash = '#/listar-products'" data-ng-if="!isUpdate()">Cancelar</button>
 

@@ -1,6 +1,16 @@
-angular.module('omc.product').directive('productForm', function (){
+angular.module('omc.product')
+
+.directive('productForm', function (){
 
 return {
-    templateUrl: 'view/productForm.html',
-    };
+    // template: '<div>xxxxxxxxxxxxxxx</div>',
+    templateUrl: 'sofea-bower-omc-pedidos/module/product/view/productForm.html',
+    // replace: true,
+    scope: {
+        product: "=product"
+    },
+
+    transclude: true
+};
+
 });
