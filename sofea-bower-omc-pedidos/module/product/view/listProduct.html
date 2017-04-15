@@ -40,7 +40,7 @@
                         <td>{{product.dataUltimaAlteracao| date : "dd/MM/yyyy"}}</td>
                         <td>
                             <button class="btn btn-warning" ng-click="ProductCtrl.listUpdate(product, 'update');"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>Update</button>
-                            <button class="btn btn-danger" ng-click="ProductCtrl.listDelete(product, 'delete')"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Delete</button>
+                            <button class="btn btn-danger" data-ng-click="ProductCtrl.listDelete(product); ProductCtrl.showModalDelete();"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Delete</button>
                         </td>
                         </td>
                     </tr>
@@ -49,3 +49,11 @@
         </div>
     </div>
 </div>
+
+ <!--<div class="row">
+        <div class="col-sm-6">
+            <a href="javascript:void(0)"
+               data-ng-click="passoDoisResumoCtrl.exibirModalEnderecoCorretor()"
+               data-ng-if="passoDoisResumoCtrl.isExibirLinkEnderecoCorretor()">Endereço</a>
+        </div>
+    </div>-->

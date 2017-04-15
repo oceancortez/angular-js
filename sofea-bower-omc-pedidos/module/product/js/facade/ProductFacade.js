@@ -78,8 +78,4 @@ function ProductFacade(ProductService, ProductFactory, $q) {
         });
     };
 
-    
-
-
-
 }

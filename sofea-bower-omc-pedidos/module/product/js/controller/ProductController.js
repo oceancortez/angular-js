@@ -3,9 +3,10 @@ angular.module('omc.product')
 .controller('ProductController', ProductController);
 
 ProductController.$inject = ["$scope", "$location", "ProductFacade", "$routeParams", "ngProgressFactory", "$rootScope", "$anchorScroll",
-'$filter'];
+'$filter', '$uibModal'];
 
-function ProductController($scope, $location, ProductFacade, $routeParams, ngProgressFactory, $rootScope, $anchorScroll, $filter) {
+function ProductController($scope, $location, ProductFacade, $routeParams, ngProgressFactory, $rootScope, $anchorScroll,
+ $filter, $uibModal ) {
 
     var controller = this;
     controller.alertMsg = "";
@@ -18,6 +19,7 @@ function ProductController($scope, $location, ProductFacade, $routeParams, ngPro
     controller.products = [];
     controller.anchor = "";
     controller.product = {};
+    controller.isProductWasDeleted = false;
 
     if ($routeParams.id) {
         controller.product = {
@@ -103,29 +105,63 @@ function ProductController($scope, $location, ProductFacade, $routeParams, ngPro
     };
 
 
-    controller.listDelete = function(product, anchor) {
+    controller.listDelete = function(product) {
         $rootScope.product = product;
-        controller.buildShowViews(false, false, false, true);
-        controller.gotoAnchor(anchor);
     };
 
-    //TODO Terminar de refatorar    
-    controller.delete = function(product) {
-        controller.progressbar.start();
-        var promise = ProductFacade.deleteProduct(product);
-        promise.then(function(retorno) {
-            controller.alertMsg = retorno;
-            controller.progressbar.complete();
-            controller.alertMsg = "";
-            $rootScope.product = {};
-            controller.buildListProducts();
-            controller.buildShowViews(true, false, false, false);
-        }, function error(retorno) {
-            controller.alertMsg = retorno;
+    //The $modal change for $uibModal
+    controller.showModalDelete = function () {
+    $rootScope.modalInstance = $uibModal.open({
+            animation: true,
+            templateUrl: 'sofea-bower-omc-pedidos/module/product/view/deleteProduct.html',
+            controller: 'ProductController',
+            controllerAs: 'ProductCtrl',
+            backdrop: 'static',
+            size: 6,
+            resolve: {
+                 products: function() {
+                     console.log('showModalDelete total of products =' + controller.products.length);
+                    return controller.products;
+                }
+            }
         });
     };
 
-    
+    controller.closeModal = function(){
+        $rootScope.modalInstance.close(controller.buildListProducts());            
+    };
+
+
+    // controller.delete = function(product) {
+    //     controller.progressbar.start();
+    //     var promise = ProductFacade.deleteProduct(product);
+    //     promise.then(function(retorno) {
+    //         $scope;
+    //         controller.alertMsg = retorno;     
+    //         $rootScope.product = {};              
+    //         $rootScope.modalInstance.close(controller.buildListProducts());
+    //         controller.progressbar.complete();
+    //     }, function error(retorno) {
+    //         controller.alertMsg = retorno;
+    //     });
+    // };
+
+    //TODO FIX AFTER DELETED ONE REGISTER , HAVE THAN RENDERED THIS TABLE
+    controller.delete = function(product) {
+        controller.progressbar.start();
+      var promise = ProductFacade.deleteProduct(product);
+
+        if(promise.indexOf('Success') > 0){
+            controller.buildListProducts();
+            controller.alertMsg = promise;     
+            $rootScope.product = {};              
+            $rootScope.modalInstance.close(controller.buildListProducts());
+            controller.progressbar.complete();
+      }else{
+        controller.alertMsg = promise.error;
+      }
+    };
+
 
     controller.formatDate = function (product){
         if(product.dataCadastro){
@@ -197,6 +233,7 @@ function ProductController($scope, $location, ProductFacade, $routeParams, ngPro
 
     };
 
+   
     controller.gotoDiv(controller.anchor);
     controller.buildListProducts();
     controller.buildShowViews(false, false, false, false);

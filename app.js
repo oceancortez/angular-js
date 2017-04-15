@@ -3,5 +3,7 @@ angular.module('omc', [
     'omc.cliente',
     'omc.pedido',
     'omc.product',
-    'ngProgress'
+    'ngProgress',
+    'ui.bootstrap'
+
 ]);
