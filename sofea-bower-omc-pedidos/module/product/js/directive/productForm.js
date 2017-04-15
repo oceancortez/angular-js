@@ -1,16 +1,24 @@
-angular.module('omc.product')
+// angular.module('omc.product')
 
-.directive('productForm', function (){
+// .directive('productForm', function() {
 
-return {
-    // template: '<div>xxxxxxxxxxxxxxx</div>',
-    templateUrl: 'sofea-bower-omc-pedidos/module/product/view/productForm.html',
-    // replace: true,
-    scope: {
-        product: "=product"
-    },
+//     return {
+//         require: ['^form', 'ngModel'],
+//         link: function(scope, elements, attrs, ctrl) {
+//             console.log(scope);
+//             console.log(elements);
+//             console.log(attrs);
+//             console.log(ctrl);
 
-    transclude: true
-};
+//         },
+//         templateUrl: 'sofea-bower-omc-pedidos/module/product/view/formProduct.html',
+//         // replace: true,
+//         scope: {
+//             product: "@",
+//             controller: "=ProductCtrl"
+//         },
 
-});
+//         transclude: true
+//     };
+
+// });
