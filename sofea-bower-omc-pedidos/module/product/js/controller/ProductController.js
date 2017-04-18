@@ -22,12 +22,6 @@ function ProductController($scope, $location, ProductFacade, $routeParams, ngPro
     controller.isProductWasDeleted = false;
     controller.labelView = '';
 
-    //if ($routeParams.id) {
-    //    controller.product = {
-    //        codigo: $routeParams.id
-    //    };
-    //}
-
     controller.gotoDiv = function(anchor) {
         $location.hash(anchor);
         $anchorScroll();
@@ -44,15 +38,6 @@ function ProductController($scope, $location, ProductFacade, $routeParams, ngPro
                 controller.buildShowViews(false, true, false, false);
                 controller.labelView = 'CREATE';
                 controller.buildCreateProduct();
-                break;
-            case 'showUpdate':
-                controller.buildShowViews(false, false, true, false);
-                break;
-            case 'showDelete':
-                controller.buildShowViews(false, false, false, true);
-                break;
-            case 'showDelete':
-                controller.buildShowViews(false, false, false, true);
                 break;
             default:
                 break;
@@ -134,22 +119,6 @@ function ProductController($scope, $location, ProductFacade, $routeParams, ngPro
         });        
     };
 
-    controller.closeModal = function(){
-        controller.modalInstance.close(controller.buildListProducts());            
-    };
-
-    controller.cancel = function(anchor) {
-        controller.buildShowViews(true, false, false, false);
-    };
-
-    // controller.refreshList = function() {
-    //     $location.path("/listar-clientes");
-    // };
-
-    var path = $location.$$path;
-    // if (path.indexOf('list') > 0) {
-    //     loadingListProducts();
-    // }
 
     controller.buildShowViews = function(showList, showCreate, showUpdate, showDelete) {
         controller.showList = showList;
@@ -161,6 +130,22 @@ function ProductController($scope, $location, ProductFacade, $routeParams, ngPro
     controller.gotoDiv(controller.anchor);
     controller.buildListProducts();
     controller.buildShowViews(false, false, false, false);
+
+
+    //if ($routeParams.id) {
+    //    controller.product = {
+    //        codigo: $routeParams.id
+    //    };
+    //}
+
+    // controller.refreshList = function() {
+    //     $location.path("/listar-clientes");
+    // };
+
+    var path = $location.$$path;
+    // if (path.indexOf('list') > 0) {
+    //     loadingListProducts();
+    // }
 
 
 };
