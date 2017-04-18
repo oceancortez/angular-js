@@ -6,7 +6,8 @@
     <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">X</a>
 </div>
 
-
+<div class="row">
+    <div class="col-lg-9">
 <div id="list" data-ng-if="ProductCtrl.products.length">
 
     <div>
@@ -31,7 +32,7 @@
                         <th>Date of Last Modification</th>
                         <th>Actions</th>
                     </tr>
-                    <tr ng-repeat="product in ProductCtrl.products | orderBy:ProductCtrl.propertyName:ProductCtrl.reverse">
+                    <tr data-ng-repeat="product in ProductCtrl.products | orderBy:ProductCtrl.propertyName:ProductCtrl.reverse">
                         <td>{{product.codigo}}</td>
                         <td>{{product.nome}}</td>
                         <td>{{product.valor}}</td>
@@ -39,8 +40,8 @@
                         <td>{{product.dataCadastro| date : "dd/MM/yyyy"}}</td>
                         <td>{{product.dataUltimaAlteracao| date : "dd/MM/yyyy"}}</td>
                         <td>
-                            <button class="btn btn-warning" ng-click="ProductCtrl.listUpdate(product, 'update');"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>Update</button>
-                            <button class="btn btn-danger" data-ng-click="ProductCtrl.listDelete(product); ProductCtrl.showModalDelete();"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Delete</button>
+                            <button class="btn btn-warning" ng-click="ProductCtrl.listUpdate(product);"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>Update</button>
+                            <button class="btn btn-danger" data-ng-click="ProductCtrl.listDelete(product);"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Delete</button>
                         </td>
                         </td>
                     </tr>
@@ -48,6 +49,8 @@
             </div>
         </div>
     </div>
+</div>
+</div>
 </div>
 
  <!--<div class="row">

@@ -1,0 +1,118 @@
+<div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" ng-click="ProductModalCtrl.closeModal();" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">{{ProductModalCtrl.labelView}}</h4>
+                {{$id}}
+            </div>  
+        <div class="modal-body">                        
+                <div class="row">
+                    <div class="col-sm-9 pager">
+
+                        <div class="alert alert-success fade in alert-dismissable" style="margin-top:18px;" ng-if="ProductModalCtrl.alertMsg">
+                            <strong>Info! {{ProductModalCtrl.alertMsg}}</strong>
+                            <a href="#"  class="close" data-dismiss="alert" aria-label="close" title="close">X</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row"> 
+                        <form>
+                            <div class="col-sm-9">
+                                <div class="row">
+
+                                    <div class="col-sm-9">
+                                        <div class="form-group">
+                                            <label class="label-control" for="product-codigo">Codigo</label>
+                                            <input type="text" class="form-control" id="product-codigo" readonly="readonly" ng-model="ProductModalCtrl.product.codigo">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-9">
+                                        <div class="form-group">
+                                            <label for="nome">Nome do product</label>
+                                            <input type="text" class="form-control" id="nome" data-ng-if="ProductModalCtrl.showDelete" readonly="readonly" placeholder="Nome do product" ng-model="ProductModalCtrl.product.nome">
+                                            <input type="text" class="form-control" id="nome" data-ng-if="(ProductModalCtrl.showUpdate || ProductModalCtrl.showCreate)" placeholder="Nome do product" ng-model="ProductModalCtrl.product.nome">
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-sm-9">
+                                        <div class="form-group">
+                                            <label for="valor">Valor do product</label>
+                                            <input type="text" class="form-control" id="valor" data-ng-if="ProductModalCtrl.showDelete" readonly="readonly" placeholder="Valor" ng-model="ProductModalCtrl.product.valor">
+                                            <input type="text" class="form-control" id="valor" data-ng-if="(ProductModalCtrl.showUpdate || ProductModalCtrl.showCreate)" placeholder="Valor" ng-model="ProductModalCtrl.product.valor">
+                                        </div>
+                                    </div>
+
+
+                                    <div class="col-sm-9">
+                                        <div class="form-group">
+                                            <label for="quantidade">Quantidade</label>
+                                            <input type="text" class="form-control" id="quantidade" data-ng-if="ProductModalCtrl.showDelete" readonly="readonly" placeholder="quantidade" ng-model="ProductModalCtrl.product.quantidade">
+                                            <input type="text" class="form-control" id="quantidade" data-ng-if="(ProductModalCtrl.showUpdate || ProductModalCtrl.showCreate)"  placeholder="quantidade" ng-model="ProductModalCtrl.product.quantidade">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-9">
+                                        <div class="form-group">
+                                            <label for="dataCadastro">Data de dataCadastro</label>
+                                            <input type="date" class="form-control" id="dataCadastro" data-ng-if="ProductModalCtrl.showCreate"  placeholder="Data de dataCadastro" ng-model="ProductModalCtrl.product.dataCadastro" ng-required="false">
+                                            <input type="text"
+                                                   class="form-control"
+                                                   data-ng-if="(ProductModalCtrl.showUpdate || ProductModalCtrl.showDelete)"
+                                                   readonly="readonly"
+                                                   ng-model="ProductModalCtrl.product.dataCadastro"
+                                                   datetime="hh-MM-yyyy HH:mm:ss"
+                                                   placeholder="Data de dataCadastro"
+                                                   ng-required="false">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-9">
+                                        <div class="form-group">
+                                            <label for="dataUltimaAlteracao">Data de UltimaAlteracao</label>
+                                            <input type="text" class="form-control" id="dataUltimaAlteracao" readonly="readonly" placeholder="Data de UltimaAlteracao" ng-model="ProductModalCtrl.product.dataUltimaAlteracao" ng-required="false">
+                                        </div>
+                                    </div>
+                                    <!--data-ng-if="!isUpdate()"-->
+                                    <div class="modal-footer">
+                                        <div class="row">
+
+                                            <div class="col-sm-9">
+                                                <div class="form-group">
+                                                    <div class="col-sm-offset-1 col-sm-10">
+                                                        <button type="submit"
+                                                                class="btn btn-danger btn-lg btn-block"
+                                                                data-ng-click="ProductModalCtrl.delete(ProductModalCtrl.product);"
+                                                                data-ng-if="ProductModalCtrl.showDelete">
+                                                                 Delete!
+                                                        </button>
+
+                                                         <button type="submit"
+                                                                 class="btn btn-warning btn-lg btn-block"
+                                                                 data-ng-click="ProductModalCtrl.update(ProductModalCtrl.product);"
+                                                                 data-ng-if="ProductModalCtrl.showUpdate">
+                                                                 Update!
+                                                        </button>
+
+                                                        <button type="submit"
+                                                                class="btn btn-success btn-lg btn-block"
+                                                                data-ng-click="ProductModalCtrl.create(ProductModalCtrl.product);"
+                                                                data-ng-if="ProductModalCtrl.showCreate">
+                                                                Create!
+                                                        </button>
+
+                                                        <button class="btn btn-default btn-lg btn-block" ng-click="ProductModalCtrl.closeModal();">Cancel</button>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                        </form>
+
+                   </div>
+
+                </div>
+        
+            </div>

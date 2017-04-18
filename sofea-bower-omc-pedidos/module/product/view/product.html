@@ -1,3 +1,5 @@
+<div class="row">
+    <div class="col-sm-12">
 <div data-ng-controller="ProductController as ProductCtrl">
     <h1> > product</h1>
     {{$id}}
@@ -16,10 +18,9 @@
     </div>
 
     <div ng-include="'sofea-bower-omc-pedidos/module/product/view/listProduct.html'" data-ng-if="ProductCtrl.showList"> </div>
-    <div ng-include="'sofea-bower-omc-pedidos/module/product/view/createOrUpdateProduct.html'"
-         data-ng-if="ProductCtrl.showUpdate || ProductCtrl.showCreate"> 
-    </div>
-   
     <div ng-include="'sofea-bower-omc-pedidos/module/product/view/testProduct.html'" data-ng-if="ProductCtrl.showTest"> </div>
+
+</div>
+</div>
 
 </div>

@@ -3,10 +3,10 @@ angular.module('omc.product')
 .controller('ProductController', ProductController);
 
 ProductController.$inject = ["$scope", "$location", "ProductFacade", "$routeParams", "ngProgressFactory", "$rootScope", "$anchorScroll",
-'$filter', '$uibModal'];
+'$filter', '$uibModal', '$log'];
 
 function ProductController($scope, $location, ProductFacade, $routeParams, ngProgressFactory, $rootScope, $anchorScroll,
- $filter, $uibModal ) {
+ $filter, $uibModal, $log) {
 
     var controller = this;
     controller.alertMsg = "";
@@ -20,12 +20,13 @@ function ProductController($scope, $location, ProductFacade, $routeParams, ngPro
     controller.anchor = "";
     controller.product = {};
     controller.isProductWasDeleted = false;
+    controller.labelView = '';
 
-    if ($routeParams.id) {
-        controller.product = {
-            codigo: $routeParams.id
-        };
-    } 
+    //if ($routeParams.id) {
+    //    controller.product = {
+    //        codigo: $routeParams.id
+    //    };
+    //}
 
     controller.gotoDiv = function(anchor) {
         $location.hash(anchor);
@@ -36,12 +37,13 @@ function ProductController($scope, $location, ProductFacade, $routeParams, ngPro
         switch (view) {
             case 'showList':
                 controller.buildShowViews(true, false, false, false);
+                controller.labelView = '';
                 controller.buildListProducts();
                 break;
             case 'showCreate':
                 controller.buildShowViews(false, true, false, false);
+                controller.labelView = 'CREATE';
                 controller.buildCreateProduct();
-                controller.labelView = "CREATE";
                 break;
             case 'showUpdate':
                 controller.buildShowViews(false, false, true, false);
@@ -59,7 +61,8 @@ function ProductController($scope, $location, ProductFacade, $routeParams, ngPro
 
     controller.buildCreateProduct = function() {
         controller.product = {};
-        $rootScope.product = controller.product;
+        controller.alertMsg = "";
+        controller.showModalProduct();
     };
 
     controller.buildListProducts = function() {
@@ -77,148 +80,71 @@ function ProductController($scope, $location, ProductFacade, $routeParams, ngPro
             console.log("Entrou no método = ListProductController.findAll " + produtos.length);
             controller.products = produtos;
             controller.progressbar.complete();
-            controller.gotoAnchor(0);
         }, function error(response) {
             controller.alertMsg = 'Dont possible loading the products >> ' + response.status + ' / ' + response.statusText;
         });
     };
 
-
-    controller.gotoAnchor = function(x) {
-        var newHash = 'anchor' + x;
-        if ($location.hash() !== newHash) {
-            // set the $location.hash to `newHash` and
-            // $anchorScroll will automatically scroll to it
-            //$location.hash('anchor' + x);
-        } else {
-            // call $anchorScroll() explicitly,
-            // since $location.hash hasn't changed
-            //$anchorScroll();
-        }
+    controller.getAllProducts = function(){
+        return ProductFacade.listProducts().then(function(produtos) {
+            controller.products = produtos;
+            return controller.products; 
+        }, function error(response) {
+             return controller.products = []; 
+        });
     };
 
-    controller.listUpdate = function(product, anchor) {
-        $rootScope.product = product;
-        controller.labelView = "UPDATE";
-        controller.buildShowViews(false, false, true, false);
-        controller.gotoAnchor(anchor);
+    controller.listUpdate = function(product) {
+        controller.product = product;
+        controller.buildShowViews(true, false, true, false);
+        controller.showModalProduct();
     };
-
 
     controller.listDelete = function(product) {
-        $rootScope.product = product;
+        controller.product = product;
+        controller.buildShowViews(true, false, false, true);
+        controller.showModalProduct();
     };
 
     //The $modal change for $uibModal
-    controller.showModalDelete = function () {
-    $rootScope.modalInstance = $uibModal.open({
-            animation: true,
-            templateUrl: 'sofea-bower-omc-pedidos/module/product/view/deleteProduct.html',
-            controller: 'ProductController',
-            controllerAs: 'ProductCtrl',
-            backdrop: 'static',
-            size: 6,
-            resolve: {
-                 products: function() {
-                     console.log('showModalDelete total of products =' + controller.products.length);
-                    return controller.products;
-                }
-            }
-        });
+    controller.showModalProduct = function () {
+        controller.modalInstance = $uibModal.open({
+                animation: true,
+                templateUrl: 'sofea-bower-omc-pedidos/module/product/view/template/modalProduct.html',
+                controller: 'ProductModalController',
+                controllerAs: 'ProductModalCtrl',
+                //backdrop: 'static',
+                size: 6,
+                resolve: {
+                    product: angular.copy(controller.product),
+                    showDelete: controller.showDelete,
+                    showUpdate: controller.showUpdate,
+                    showCreate: controller.showCreate
+
+                 }
+            });
+
+        return controller.modalInstance.result.then(function(result) {
+             controller.buildListProducts();
+             controller.alertMsg = result;
+             controller.showList = true;
+             controller.modalInstance.close(result);
+        }, function error(){
+            $log.info('Modal dismissed at: ' + new Date());
+        });        
     };
 
     controller.closeModal = function(){
-        $rootScope.modalInstance.close(controller.buildListProducts());            
-    };
-
-
-    // controller.delete = function(product) {
-    //     controller.progressbar.start();
-    //     var promise = ProductFacade.deleteProduct(product);
-    //     promise.then(function(retorno) {
-    //         $scope;
-    //         controller.alertMsg = retorno;     
-    //         $rootScope.product = {};              
-    //         $rootScope.modalInstance.close(controller.buildListProducts());
-    //         controller.progressbar.complete();
-    //     }, function error(retorno) {
-    //         controller.alertMsg = retorno;
-    //     });
-    // };
-
-    //TODO FIX AFTER DELETED ONE REGISTER , HAVE THAN RENDERED THIS TABLE
-    controller.delete = function(product) {
-        controller.progressbar.start();
-      var promise = ProductFacade.deleteProduct(product);
-
-        if(promise.indexOf('Success') > 0){
-            controller.buildListProducts();
-            controller.alertMsg = promise;     
-            $rootScope.product = {};              
-            $rootScope.modalInstance.close(controller.buildListProducts());
-            controller.progressbar.complete();
-      }else{
-        controller.alertMsg = promise.error;
-      }
-    };
-
-
-    controller.formatDate = function (product){
-        if(product.dataCadastro){
-             product.dataCadastro = $filter('date')(product.dataCadastro, 'dd-MM-yyyy HH:mm:ss');
-        }
-        return product;
-    };
-
-    controller.save = function(product) {
-        product = controller.formatDate(product);
-        controller.progressbar.start();
-        var promise = ProductFacade.createProduct(product);
-        promise.then(function(retorno) {
-            if(retorno.indexOf('Success') > 0){
-            controller.alertMsg = retorno;
-            controller.progressbar.complete();
-            controller.buildListProducts();
-            controller.buildShowViews(true, false, false, false);
-            controller.product = {};
-            controller.alertMsg = "";
-            }else{
-            controller.alertMsg = retorno;
-            controller.progressbar.complete();
-            }
-
-        }, function error(retorno) {
-            controller.alertMsg = retorno;
-        });
-    };
-
-    controller.update = function(product) {
-        controller.progressbar.start();
-        var promise = ProductFacade.updateProduct(product);
-        promise.then(function(retorno) {
-            if(retorno.indexOf('Success') > 0){
-                controller.alertMsg = retorno;
-                controller.progressbar.complete();
-                controller.alertMsg = "";
-                $rootScope.product = {};
-                controller.buildShowViews(true, false, false, false);
-              }else{
-                 controller.alertMsg = retorno;
-                 controller.progressbar.complete();
-              }
-        }, function error(retorno) {
-            controller.alertMsg = retorno;
-        });
+        controller.modalInstance.close(controller.buildListProducts());            
     };
 
     controller.cancel = function(anchor) {
         controller.buildShowViews(true, false, false, false);
-        controller.gotoAnchor(anchor);
     };
 
-    controller.refreshList = function() {
-        $location.path("/listar-clientes");
-    };
+    // controller.refreshList = function() {
+    //     $location.path("/listar-clientes");
+    // };
 
     var path = $location.$$path;
     // if (path.indexOf('list') > 0) {
@@ -230,12 +156,11 @@ function ProductController($scope, $location, ProductFacade, $routeParams, ngPro
         controller.showCreate = showCreate;
         controller.showUpdate = showUpdate;
         controller.showDelete = showDelete;
-
     };
 
-   
     controller.gotoDiv(controller.anchor);
     controller.buildListProducts();
     controller.buildShowViews(false, false, false, false);
+
 
 };

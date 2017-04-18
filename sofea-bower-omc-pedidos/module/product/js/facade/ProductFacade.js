@@ -74,8 +74,11 @@ function ProductFacade(ProductService, ProductFactory, $q) {
                 } else {
                     reject(retorno);
                 }
-            });
+            }, function error(response){
+                    reject(response.message);
+             });
         });
     };
+
 
 }
