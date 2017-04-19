@@ -3,13 +3,14 @@ angular.module('omc.product')
 .controller('ProductController', ProductController);
 
 ProductController.$inject = ["$scope", "$location", "ProductFacade", "$routeParams", "ngProgressFactory", "$rootScope", "$anchorScroll",
-'$filter', '$uibModal', '$log'];
+'$filter', '$uibModal', '$log', '$timeout'];
 
 function ProductController($scope, $location, ProductFacade, $routeParams, ngProgressFactory, $rootScope, $anchorScroll,
- $filter, $uibModal, $log) {
+ $filter, $uibModal, $log, $timeout) {
 
     var controller = this;
     controller.alertMsg = "";
+    controller.showMessage = false;
     //Create a instance of progressbar
     controller.progressbar = ngProgressFactory.createInstance();
 
@@ -112,11 +113,19 @@ function ProductController($scope, $location, ProductFacade, $routeParams, ngPro
         return controller.modalInstance.result.then(function(result) {
              controller.buildListProducts();
              controller.alertMsg = result;
+            controller.createMessage();
              controller.showList = true;
              controller.modalInstance.close(result);
         }, function error(){
             $log.info('Modal dismissed at: ' + new Date());
         });        
+    };
+
+    controller.createMessage = function(){
+        controller.showMessage = true;
+        setTimeout(function(){
+            controller.showMessage = false;
+        }, 3000);
     };
 
 
