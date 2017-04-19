@@ -18,6 +18,12 @@
                 <h2 class="panel-title text-center">Products</h2>
             </div>
             <div class="panel-body">
+                <form class="form-inline">
+                    <div class="form-group">
+                        <label>Search Product:</label>
+                        <input type="text" ng-model="ProductCtrl.search" class="form-control" placeholder="Search...">
+                    </div>
+                </form>
                 <table class="table table-striped">
                     <tr>
                         <th>
@@ -32,7 +38,11 @@
                         <th>Date of Last Modification</th>
                         <th>Actions</th>
                     </tr>
-                    <tr data-ng-repeat="product in ProductCtrl.products | orderBy:ProductCtrl.propertyName:ProductCtrl.reverse">
+                    <tr dir-paginate="product in ProductCtrl.products
+                     | itemsPerPage:5
+                     | orderBy:ProductCtrl.propertyName:ProductCtrl.reverse
+                     | filter:ProductCtrl.search">
+
                         <td>{{product.codigo}}</td>
                         <td>{{product.nome}}</td>
                         <td>{{product.valor}}</td>
@@ -46,6 +56,7 @@
                         </td>
                     </tr>
                 </table>
+                <dir-pagination-controls max-size="6" direction-links="true" boundary-links="true"></dir-pagination-controls>
             </div>
         </div>
     </div>
