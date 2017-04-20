@@ -22,7 +22,7 @@ function ProductService($http) {
         createProduct: createProduct,
         updateProduct: updateProduct,
         deleteProduct: deleteProduct,
-        listBy: listBy
+        listByCategoryId: listByCategoryId
     }
 
     return service;
@@ -53,9 +53,9 @@ function ProductService($http) {
     };
 
     
-        function listBy(out) {
+        function listByCategoryId(out) {
         console.log("Inside method = productService.deleteProduct() @DELETE ");
-        return $http.get("http://localhost/omc-pedidos-multi-jta-jndi-jpa-h-jersey-test-backend/product/list-by", out, {
+        return $http.get("http://localhost/omc-pedidos-multi-jta-jndi-jpa-h-jersey-test-backend/product/list-by-category?categoryId=" + out.categoryId, {
             headers: _headers
         });
     };

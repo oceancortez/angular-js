@@ -11,7 +11,8 @@ function ProductFactory($httpParamSerializer) {
         productIn: productIn,
         createProductOut: createProductOut,    
         updateProductOut: updateProductOut,
-        deleteProductOut: deleteProductOut
+        deleteProductOut: deleteProductOut,
+        categoryIdOut: categoryIdOut
     };
 
     return factory;
@@ -60,12 +61,12 @@ function ProductFactory($httpParamSerializer) {
     function deleteProductOut(product) {
         return {
              "codigo": product.codigo
-            //,
-            // "nome": product.nome,
-            // "valor": product.valor,
-            // "quantidade": product.quantidade,
-            // "dataCadastro": product.dataCadastro,
-            // "dataUltimaAlteracao": product.dataUltimaAlteracao
+        }
+    };
+
+    function categoryIdOut(categoryId) {
+        return {
+            "categoryId": categoryId
         }
     };
 

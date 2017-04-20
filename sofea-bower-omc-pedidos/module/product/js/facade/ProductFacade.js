@@ -11,8 +11,9 @@ function ProductFacade(ProductService, ProductFactory, $q) {
         listProducts: listProducts,
         createProduct: createProduct,
         updateProduct: updateProduct,
-        deleteProduct: deleteProduct
-    }
+        deleteProduct: deleteProduct,
+        listProductsByCategoryId: listProductsByCategoryId
+    };
 
     return facade;
 
@@ -80,5 +81,22 @@ function ProductFacade(ProductService, ProductFactory, $q) {
         });
     };
 
+        function listProductsByCategoryId(categoryId){
+            return $q(function(resolve, reject) {
+                var out = ProductFactory.categoryIdOut(categoryId);
+                ProductService.listByCategoryId(out).then(function(response) {
+                    var retorno = ProductFactory.listProductsIn(response);
+                    if (retorno) {
+                        resolve(retorno);
+                    } else {
+                        retorno.error = retorno.message;
+                        reject(retorno);
+                    }
+                }, function error(response) {
+                    reject(response);
+                });
+            });
+        };
 
-}
+
+};

@@ -7,6 +7,19 @@
 </div>
 
 <div class="row">
+    <div class="col-md-4" data-ng-if="ProductCtrl.listCategories.length">
+        <label class="control-label">Category</label>
+        <select class="form-control"
+                data-ng-options="category.name for category in ProductCtrl.listCategories"
+                data-ng-model="ProductCtrl.category"
+                data-ng-change="ProductCtrl.loadProductsByCategoryId(ProductCtrl.category);">
+            <option value="">---Please select---</option>
+        </select>
+    </div>
+</div>
+
+
+<div class="row">
     <div class="col-lg-9">
 <div id="list" data-ng-if="ProductCtrl.products.length">
 
