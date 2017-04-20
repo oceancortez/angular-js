@@ -35,8 +35,8 @@ angular.module('omc')
             templateUrl: 'sofea-bower-omc-pedidos/module/product/view/listProduct.html'
         })
 
-        .when('/product/delete', {
-            templateUrl: 'sofea-bower-omc-pedidos/module/product/view/deleteProduct.html'
+        .when('/category', {
+            templateUrl: 'sofea-bower-omc-pedidos/module/category/view/category.html'
         })
 
         .when('/product/test', {

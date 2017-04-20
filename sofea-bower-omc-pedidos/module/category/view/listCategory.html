@@ -1,0 +1,65 @@
+<!--Depois que eu comentei esse trecho, parou de dar erro no direcionamento de tela-->
+<!--data-ng-controller="ProductController as ProductCtrl"-->
+
+<div class="alert alert-danger fade in alert-dismissable" style="margin-top:18px;" ng-show="CategoryCtrl.showMessage">
+    <strong>Info! {{CategoryCtrl.alertMsg}}</strong>
+    <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">X</a>
+</div>
+
+<div class="row">
+    <div class="col-lg-9">
+<div id="list" data-ng-if="CategoryCtrl.categories.length">
+
+    <div>
+        <h1>List categories</h1>
+        {{$id}}
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2 class="panel-title text-center">Categories</h2>
+            </div>
+            <div class="panel-body">
+                <form class="form-inline">
+                    <div class="form-group">
+                        <label>Search Category:</label>
+                        <input type="text" ng-model="CategoryCtrl.search" class="form-control" placeholder="Search...">
+                    </div>
+                </form>
+                <table class="table table-striped">
+                    <tr>
+                        <th>
+                            <button class="btn btn-default glyphicon glyphicon-retweet" ng-click="CategoryCtrl.sortBy('id')">ID</button>
+                            <span class="sortorder" ng-show="CategoryCtrl.propertyName === 'id'" ng-class="{reverse: reverse}"></span>
+                        </th>
+
+                        <th>Name of Category</th>
+                        <th>Description</th>
+                        <th>Picture</th>
+                        <th>Date of Creation</th>
+                        <th>Date of Last Modification</th>
+                        <th>Actions</th>
+                    </tr>
+                    <tr dir-paginate="category in CategoryCtrl.categories
+                     | itemsPerPage:5
+                     | orderBy:CategoryCtrl.propertyName:CategoryCtrl.reverse
+                     | filter:CategoryCtrl.search">
+
+                        <td>{{category.id}}</td>
+                        <td>{{category.name}}</td>
+                        <td>{{category.description}}</td>
+                        <td>{{category.picture}}</td>
+                        <td>{{category.dateCreate| date : "dd/MM/yyyy"}}</td>
+                        <td>{{category.dateLastModification| date : "dd/MM/yyyy"}}</td>
+                        <td>
+                            <button class="btn btn-warning" ng-click="CategoryCtrl.listUpdate(category);"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>Update</button>
+                            <button class="btn btn-danger" data-ng-click="CategoryCtrl.listDelete(category);"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Delete</button>
+                        </td>
+                        </td>
+                    </tr>
+                </table>
+                <dir-pagination-controls max-size="6" direction-links="true" boundary-links="true"></dir-pagination-controls>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>

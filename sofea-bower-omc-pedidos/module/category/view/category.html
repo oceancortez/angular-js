@@ -1,0 +1,20 @@
+<div class="row">
+    <div class="col-sm-12">
+<div data-ng-controller="CategoryController as CategoryCtrl">
+    <h1> > Category</h1>
+    {{$id}}
+
+    <div class="btn-group" role="group">
+        <button class="btn btn-success" ng-click="CategoryCtrl.showViews('showCreate')">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> create category
+        </button>
+        <button class="btn btn-info" ng-click="CategoryCtrl.showViews('showList')">
+            <span class="glyphicon glyphicon-list" aria-hidden="true"></span> list category
+        </button>
+    </div>
+
+    <div ng-include="'sofea-bower-omc-pedidos/module/category/view/listCategory.html'" data-ng-if="CategoryCtrl.showList"> </div>
+</div>
+</div>
+
+</div>
