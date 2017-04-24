@@ -40,6 +40,10 @@ release.properties
 
 # bower
 /bower_components
+/node_modules
 
+#gulps
+sofea-bower-omc-pedidos/css-gulp
+sofea-bower-omc-pedidos/module-gulp
  
 
