@@ -22,13 +22,22 @@ function ProductFacade(ProductService, ProductFactory, $q) {
         return $q(function(resolve, reject) {
             ProductService.findAll().then(function(response) {
 
-                var retorno = ProductFactory.listProductsIn(response);
-                if (retorno) {
-                    resolve(retorno);
-                } else {
-                    retorno.error = retorno.message;
-                    reject(retorno);
-                }
+                resolve(ProductFactory.listProductsIn(response));
+
+            }, function error(response) {
+                reject(response);
+            });
+        });
+    };
+
+
+    function listProductsByCategoryId(categoryId){
+        return $q(function(resolve, reject) {
+            var out = ProductFactory.categoryIdOut(categoryId);
+            ProductService.listByCategoryId(out).then(function(response) {
+
+                resolve(ProductFactory.listProductsIn(response));
+
             }, function error(response) {
                 reject(response);
             });
@@ -39,13 +48,10 @@ function ProductFacade(ProductService, ProductFactory, $q) {
         return $q(function(resolve, reject) {
             var out = ProductFactory.createProductOut(produto);
             ProductService.createProduct(out).then(function(response) {
-                var retorno = ProductFactory.productIn(response);
-                if (retorno) {
-                    resolve(retorno);
-                } else {
-                    retorno.error = retorno.message;
-                    reject(retorno);
-                }
+                resolve(ProductFactory.productIn(response));
+
+            }, function error(response){
+                reject(response);
             });
         });
     };
@@ -80,23 +86,5 @@ function ProductFacade(ProductService, ProductFactory, $q) {
              });
         });
     };
-
-        function listProductsByCategoryId(categoryId){
-            return $q(function(resolve, reject) {
-                var out = ProductFactory.categoryIdOut(categoryId);
-                ProductService.listByCategoryId(out).then(function(response) {
-                    var retorno = ProductFactory.listProductsIn(response);
-                    if (retorno) {
-                        resolve(retorno);
-                    } else {
-                        retorno.error = retorno.message;
-                        reject(retorno);
-                    }
-                }, function error(response) {
-                    reject(response);
-                });
-            });
-        };
-
 
 };

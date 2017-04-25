@@ -1,17 +1,24 @@
 angular.module('omc.product').controller('ProductModalController', ProductModalController);
 
-    ProductModalController.$inject = ['$uibModalInstance' , 'ProductFacade', 'product', 'showUpdate', 'showDelete',
-        'showCreate', '$filter'];
+    ProductModalController.$inject = ['$uibModalInstance', '$filter', 'ProductFacade', 'product', 'showUpdate', 'showDelete',
+        'showCreate','categoryId', 'categories'];
 
-    function ProductModalController($uibModalInstance,  ProductFacade, product, showUpdate, showDelete, showCreate,
-    $filter){
+    function ProductModalController($uibModalInstance, $filter, ProductFacade, product, showUpdate, showDelete, showCreate, categoryId,
+                                    categories){
 
         var modal = this;
         modal.product = product;
         modal.showUpdate = showUpdate;
         modal.showDelete = showDelete;
         modal.showCreate = showCreate;
-       //modal.labelView = labelView;
+        modal.categoryId = categoryId;
+        modal.category;
+        modal.categories = {
+            list: categories.list,
+            categoryId: categoryId
+        };
+
+        //modal.labelView = labelView;
 
         
     modal.delete = function(product) {
@@ -19,21 +26,25 @@ angular.module('omc.product').controller('ProductModalController', ProductModalC
             modal.product = {};
             modal.closeModal(retorno);              
             }, function error(retorno) {
-             modal.alertMsg = retorno;
+             modal.message = retorno;
          });       
     };
 
      modal.update = function(product) {
+        product.categoryId =  modal.categoryId;
         var promise = ProductFacade.updateProduct(product);
-        promise.then(function(retorno) {
-            if(retorno.indexOf('Success') > 0){
+        promise.then(function(result) {
+
+            if(result.productType){
                 modal.product = {};
-                 modal.closeModal(retorno);
-              }else{
-                 modal.alertMsg = retorno;
-              }
-        }, function error(retorno) {
-            modal.alertMsg = retorno;
+                result.categoryId = result.productType.categoryId;
+                modal.closeModal(result)
+            }else{
+                modal.message = result.message;
+                modal.showMessage = true;
+            }
+        }, function error(result) {
+            modal.message = result;
         });
     };
 
@@ -41,15 +52,17 @@ angular.module('omc.product').controller('ProductModalController', ProductModalC
             product = modal.formatDate(product);
             var promise = ProductFacade.createProduct(product);
             promise.then(function(result) {
-                if(result.indexOf('Success') > 0){
+                if(result.productType){
                     modal.product = {};
+                    result.categoryId = result.productType.categoryId;
                     modal.closeModal(result)
                 }else{
-                    modal.alertMsg = result;
+                    modal.message = result.message;
+                    modal.showMessage = true;
                 }
 
             }, function error(result) {
-                modal.alertMsg = result;
+                modal.message = result;
             });
         };
 
@@ -63,6 +76,18 @@ angular.module('omc.product').controller('ProductModalController', ProductModalC
             }
             return product;
         };
+
+
+        modal.buildCategory = function (){
+            for(var i = 0, len = modal.categories.list.length; i < len; i++){
+                if(modal.categories.list[i].id === modal.categoryId){
+                    modal.category = modal.categories.list[i];
+                    break;
+                }
+            }
+        };
+
+        modal.buildCategory();
 
 
 

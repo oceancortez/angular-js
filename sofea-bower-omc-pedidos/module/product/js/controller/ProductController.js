@@ -9,8 +9,9 @@ function ProductController($scope, $location, ProductFacade, $routeParams, ngPro
  $filter, $uibModal, $log, $timeout, CategoryFacade) {
 
     var controller = this;
-    controller.alertMsg = "";
+    controller.message = "";
     controller.showMessage = false;
+
     //Create a instance of progressbar
     controller.progressbar = ngProgressFactory.createInstance();
 
@@ -24,11 +25,6 @@ function ProductController($scope, $location, ProductFacade, $routeParams, ngPro
     controller.labelView = '';
     controller.listCategories = [];
     controller.category = {};
-
-    controller.gotoDiv = function(anchor) {
-        $location.hash(anchor);
-        $anchorScroll();
-    };
 
     controller.showViews = function(view) {
         switch (view) {
@@ -49,7 +45,7 @@ function ProductController($scope, $location, ProductFacade, $routeParams, ngPro
 
     controller.buildCreateProduct = function() {
         controller.product = {};
-        controller.alertMsg = "";
+        controller.message = "";
         controller.showModalProduct();
     };
 
@@ -59,18 +55,6 @@ function ProductController($scope, $location, ProductFacade, $routeParams, ngPro
             controller.reverse = (controller.propertyName === propertyName) ? !controller.reverse : false;
             controller.propertyName = propertyName;
         }
-    };
-
-    controller.loadingListProducts = function() {
-        controller.progressbar.start();
-        var promise = ProductFacade.listProducts();
-        promise.then(function(produtos) {
-            console.log("Entrou no método = ListProductController.findAll " + produtos.length);
-            controller.products = produtos;
-            controller.progressbar.complete();
-        }, function error(response) {
-            controller.alertMsg = 'Dont possible loading the products >> ' + response.status + ' / ' + response.statusText;
-        });
     };
 
     controller.getAllProducts = function(){
@@ -107,15 +91,18 @@ function ProductController($scope, $location, ProductFacade, $routeParams, ngPro
                     product: angular.copy(controller.product),
                     showDelete: controller.showDelete,
                     showUpdate: controller.showUpdate,
-                    showCreate: controller.showCreate
-
+                    showCreate: controller.showCreate,
+                    categoryId: (controller.categoryId == undefined ? null : controller.categoryId),
+                    categories: {
+                        list: controller.listCategories
+                    }
                  }
             });
 
         return controller.modalInstance.result.then(function(result) {
-             controller.buildListProducts();
-             controller.alertMsg = result;
-            controller.createMessage();
+             controller.loadProductsByCategoryId(result);
+             controller.showAlert(result, true);
+             controller.createMessage();
              controller.showList = true;
              controller.modalInstance.close(result);
         }, function error(){
@@ -139,11 +126,27 @@ function ProductController($scope, $location, ProductFacade, $routeParams, ngPro
     };
 
     controller.loadProductsByCategoryId = function(category){
+        if(category == undefined){
+            category = {
+                id: controller.categoryId
+            };
+        }else if(category.categoryId) {
+            category.id = category.categoryId;
+
+        } else{
+            category.id = controller.category.id;
+        }
         controller.products = {};
-        ProductFacade.listProductsByCategoryId(category.id).then(function(products){
-            controller.products = products;
-        }, function error(){
-            controller.alertMsg = 'Dont possible loading the categories >> ' + response.status + ' / ' + response.statusText;
+        ProductFacade.listProductsByCategoryId(category.id).then(function(result){
+            if(result.products){
+                controller.showAlert(result.message, false);
+                controller.products = result.products;
+            }else{
+                controller.showAlert(result.message, true);
+            }
+        }, function error(response){
+            var message = 'Dont possible loading the categories >> ' + response.status + ' / ' + response.statusText;
+             controller.showAlert(message, true);
         });
     };
 
@@ -151,14 +154,20 @@ function ProductController($scope, $location, ProductFacade, $routeParams, ngPro
     controller.getAllCategories = function () {
         CategoryFacade.listCategories().then(function(categories){
             controller.listCategories = categories;
-        }, function error(){
-            controller.alertMsg = 'Dont possible loading the categories >> ' + response.status + ' / ' + response.statusText;
+        }, function error(response){
+            var message = 'Dont possible loading the categories >> ' + response.status + ' / ' + response.statusText;
+            controller.showAlert(message, true);
         });
     };
 
-    controller.gotoDiv(controller.anchor);
+    controller.showAlert = function (message, hide){
+        controller.message = message;
+        controller.showMessage = hide;
+    };
+
     controller.buildShowViews(false, false, false, false);
 
+    controller.getAllCategories();
 
     //if ($routeParams.id) {
     //    controller.product = {

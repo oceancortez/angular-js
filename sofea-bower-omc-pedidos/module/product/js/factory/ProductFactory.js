@@ -19,10 +19,14 @@ function ProductFactory($httpParamSerializer) {
 
 
     function listProductsIn(response) {
-        var lista = [];
-        if (response.data != undefined) {
-            response.data.forEach(function(product) {
-                lista.push({
+        var result = {},
+            products = [];
+        if (response.data != undefined
+            && response.data.body != undefined
+            && response.data.body.productTypes != null) {
+
+            response.data.body.productTypes.forEach(function(product) {
+                products.push({
                     "codigo": product.codigo,
                     "nome": product.nome,
                     "valor": product.valor,
@@ -31,10 +35,17 @@ function ProductFactory($httpParamSerializer) {
                     "dataUltimaAlteracao": product.dataUltimaAlteracao
                 });
             });
+
+            result.products = products;
+
+        } else{
+            result = {
+                message: response.data.body.message
+            };
         }
 
         console.log("Saiu do método = ProductFactory.listarproductsIn " + response);
-        return lista;
+        return result;
     };
 
     function createProductOut(product) {
@@ -43,7 +54,8 @@ function ProductFactory($httpParamSerializer) {
             "valor": product.valor,
             "quantidade": product.quantidade,
             "dataCadastro": product.dataCadastro,
-            "dataUltimaAlteracao": product.dataUltimaAlteracao
+            "dataUltimaAlteracao": product.dataUltimaAlteracao,
+            "categoryId": product.category.id
         }
     };
 
@@ -54,7 +66,8 @@ function ProductFactory($httpParamSerializer) {
             "valor": product.valor,
             "quantidade": product.quantidade,
             "dataCadastro": product.dataCadastro,
-            "dataUltimaAlteracao": product.dataUltimaAlteracao
+            "dataUltimaAlteracao": product.dataUltimaAlteracao,
+            "categoryId": product.categoryId
         }
     };
 
@@ -71,11 +84,16 @@ function ProductFactory($httpParamSerializer) {
     };
 
     function productIn(response) {
-        var retorno;
-        if (response.data != undefined) {
-            retorno = response.data;
+        var result = {};
+
+        if (response.data != undefined
+            && response.data.body != undefined
+            && response.data.body.productType != null) {
+            result = response.data.body;
+        }else{
+            result.message = response.data.body.message;
         }
-        return retorno;
+        return result;
     };
 
 

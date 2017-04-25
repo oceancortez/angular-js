@@ -8,8 +8,8 @@
                 <div class="row">
                     <div class="col-sm-9 pager">
 
-                        <div class="alert alert-success fade in alert-dismissable" style="margin-top:18px;" ng-if="ProductModalCtrl.alertMsg">
-                            <strong>Info! {{ProductModalCtrl.alertMsg}}</strong>
+                        <div class="alert alert-success fade in alert-dismissable" style="margin-top:18px;" ng-if="ProductModalCtrl.showMessage">
+                            <strong>Info! {{ProductModalCtrl.message}}</strong>
                             <a href="#"  class="close" data-dismiss="alert" aria-label="close" title="close">X</a>
                         </div>
                     </div>
@@ -50,6 +50,23 @@
                                             <input type="text" class="form-control" id="quantidade" data-ng-if="ProductModalCtrl.showDelete" readonly="readonly" placeholder="quantidade" ng-model="ProductModalCtrl.product.quantidade">
                                             <input type="text" class="form-control" id="quantidade" data-ng-if="(ProductModalCtrl.showUpdate || ProductModalCtrl.showCreate)"  placeholder="quantidade" ng-model="ProductModalCtrl.product.quantidade">
                                         </div>
+                                    </div>
+
+                                    <div class="col-sm-9">
+                                        <label class="control-label">Category</label>
+
+                                        {{ProductModalCtrl.categoryId}}
+                                        {{ProductModalCtrl.categories.categoryId.id}}
+
+                                        <select class="form-control"
+                                                ng-if="ProductModalCtrl.showCreate"
+                                                data-ng-options="category.name for category in ProductModalCtrl.categories.list"
+                                                data-ng-model="ProductModalCtrl.product.category">
+                                            <option value="">---Please select---</option>
+                                        </select>
+
+                                        <input type="text" class="form-control"  readonly="readonly" data-ng-if="ProductModalCtrl.showUpdate"  ng-model="ProductModalCtrl.category.name">
+
                                     </div>
 
                                     <div class="col-sm-9">
