@@ -22,9 +22,15 @@ angular.module('omc.product').controller('ProductModalController', ProductModalC
 
         
     modal.delete = function(product) {
-            ProductFacade.deleteProduct(product).then(function(retorno) {
-            modal.product = {};
-            modal.closeModal(retorno);              
+            ProductFacade.deleteProduct(product).then(function(result) {
+                if(result.productType){
+                    modal.message = result.message;
+                    modal.showMessage = true;
+                }else{
+                    modal.product = {};
+                    result.categoryId = modal.categoryId;
+                    modal.closeModal(result);
+                }
             }, function error(retorno) {
              modal.message = retorno;
          });       
@@ -38,7 +44,7 @@ angular.module('omc.product').controller('ProductModalController', ProductModalC
             if(result.productType){
                 modal.product = {};
                 result.categoryId = result.productType.categoryId;
-                modal.closeModal(result)
+                modal.closeModal(result);
             }else{
                 modal.message = result.message;
                 modal.showMessage = true;
@@ -55,7 +61,7 @@ angular.module('omc.product').controller('ProductModalController', ProductModalC
                 if(result.productType){
                     modal.product = {};
                     result.categoryId = result.productType.categoryId;
-                    modal.closeModal(result)
+                    modal.closeModal(result);
                 }else{
                     modal.message = result.message;
                     modal.showMessage = true;

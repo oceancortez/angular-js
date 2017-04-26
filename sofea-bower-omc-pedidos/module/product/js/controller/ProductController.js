@@ -137,6 +137,8 @@ function ProductController($scope, $location, ProductFacade, $routeParams, ngPro
             category.id = controller.category.id;
         }
         controller.products = {};
+
+        controller.categoryId = category.id;
         ProductFacade.listProductsByCategoryId(category.id).then(function(result){
             if(result.products){
                 controller.showAlert(result.message, false);
@@ -154,6 +156,7 @@ function ProductController($scope, $location, ProductFacade, $routeParams, ngPro
     controller.getAllCategories = function () {
         CategoryFacade.listCategories().then(function(categories){
             controller.listCategories = categories;
+            controller.buildCategory();
         }, function error(response){
             var message = 'Dont possible loading the categories >> ' + response.status + ' / ' + response.statusText;
             controller.showAlert(message, true);
@@ -163,6 +166,15 @@ function ProductController($scope, $location, ProductFacade, $routeParams, ngPro
     controller.showAlert = function (message, hide){
         controller.message = message;
         controller.showMessage = hide;
+    };
+
+    controller.buildCategory = function (){
+        for(var i = 0, len = controller.listCategories.length; i < len; i++){
+            if(controller.listCategories[i].id === controller.categoryId){
+                controller.category = controller.listCategories[i];
+                break;
+            }
+        }
     };
 
     controller.buildShowViews(false, false, false, false);

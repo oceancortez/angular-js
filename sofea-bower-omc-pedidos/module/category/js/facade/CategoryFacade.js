@@ -20,14 +20,7 @@ function CategoryFacade(CategoryService, CategoryFactory, $q) {
     function listCategories() {
         return $q(function(resolve, reject) {
             CategoryService.findAll().then(function(response) {
-
-                var retorno = CategoryFactory.listCategoriesIn(response);
-                if (retorno) {
-                    resolve(retorno);
-                } else {
-                    retorno.error = retorno.message;
-                    reject(retorno);
-                }
+                resolve(CategoryFactory.listCategoriesIn(response));
             }, function error(response) {
                 reject(response);
             });

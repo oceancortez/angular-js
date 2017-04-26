@@ -14,40 +14,48 @@ angular.module('omc.category').controller('CategoryModalController', CategoryMod
         
     modal.delete = function(category) {
         CategoryFacade.deleteCategory(category).then(function(result) {
-            modal.category = {};
-            modal.closeModal(result);
+            if(result.categoryType){
+                modal.message = result.message;
+                modal.showMessage = true;
+            }else{
+                modal.category = {};
+                modal.closeModal(result);
+            }
             }, function error(result) {
-             modal.alertMsg = result;
+            modal.message = result;
+            modal.showMessage = true;
          });       
     };
 
      modal.update = function(category) {
-        var promise = CategoryFacade.updateCategory(category);
-        promise.then(function(result) {
-            if(result.indexOf('Success') > 0){
-                modal.category = {};
+       CategoryFacade.updateCategory(category).then(function (result){
+             if(result.productType){
+                 modal.category = {};
                  modal.closeModal(result);
-              }else{
-                 modal.alertMsg = result;
-              }
-        }, function error(result) {
-            modal.alertMsg = result;
+             }else{
+                 modal.message = result.message;
+                 modal.showMessage = true;
+             }
+         }, function error(result) {
+            modal.message = result;
+            modal.showMessage = true;
         });
     };
 
         modal.create = function(category) {
             category = modal.formatDate(category);
-            var promise = CategoryFacade.createCategory(category);
-            promise.then(function(result) {
-                if(result.indexOf('Success') > 0){
+        CategoryFacade.createCategory(category).then(function (result){
+                if(result.categoryType){
                     modal.category = {};
-                    modal.closeModal(result)
+                    modal.closeModal(result);
                 }else{
-                    modal.alertMsg = result;
+                    modal.message = result.message;
+                    modal.showMessage = true;
                 }
 
             }, function error(result) {
-                modal.alertMsg = result;
+                modal.message = result;
+                modal.showMessage = true;
             });
         };
 

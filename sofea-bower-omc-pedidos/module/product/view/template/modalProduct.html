@@ -65,7 +65,7 @@
                                             <option value="">---Please select---</option>
                                         </select>
 
-                                        <input type="text" class="form-control"  readonly="readonly" data-ng-if="ProductModalCtrl.showUpdate"  ng-model="ProductModalCtrl.category.name">
+                                        <input type="text" class="form-control"  readonly="readonly" data-ng-if="(ProductModalCtrl.showUpdate || ProductModalCtrl.showDelete)"  ng-model="ProductModalCtrl.category.name">
 
                                     </div>
 

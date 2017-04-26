@@ -9,7 +9,7 @@ function CategoryController($scope, $location, CategoryFacade, $routeParams, ngP
  $filter, $uibModal, $log) {
 
     var controller = this;
-    controller.alertMsg = "";
+    controller.message = "";
     controller.showMessage = false;
     //Create a instance of progressbar
     controller.progressbar = ngProgressFactory.createInstance();
@@ -43,7 +43,7 @@ function CategoryController($scope, $location, CategoryFacade, $routeParams, ngP
 
     controller.buildCreateCategory = function() {
         controller.category = {};
-        controller.alertMsg = "";
+        controller.message = "";
         controller.showModalCategory();
     };
 
@@ -58,12 +58,13 @@ function CategoryController($scope, $location, CategoryFacade, $routeParams, ngP
     controller.loadingListCategories = function() {
         controller.progressbar.start();
         var promise = CategoryFacade.listCategories();
-        promise.then(function(categories) {
-            console.log("Entrou no método = ListCategoryController.findAll " + categories.length);
-            controller.categories = categories;
+        promise.then(function(result) {
+            console.log("Entrou no método = ListCategoryController.findAll " + result.categories.length);
+            controller.categories = result.categories;
             controller.progressbar.complete();
         }, function error(response) {
-            controller.alertMsg = 'Dont possible loading the Categories >> ' + response.status + ' / ' + response.statusText;
+            var message = 'Dont possible loading the Categories >> ' + response.status + ' / ' + response.statusText;
+            controller.createMessage(message);
         });
     };
 
@@ -73,6 +74,7 @@ function CategoryController($scope, $location, CategoryFacade, $routeParams, ngP
             return controller.categories;
         }, function error(response) {
              return controller.categories = [];
+            controller.createMessage(response);
         });
     };
 
@@ -108,8 +110,7 @@ function CategoryController($scope, $location, CategoryFacade, $routeParams, ngP
 
         return controller.modalInstance.result.then(function(result) {
              controller.buildListCategories();
-             controller.alertMsg = result;
-            controller.createMessage();
+             controller.createMessage(result);
              controller.showList = true;
              controller.modalInstance.close(result);
         }, function error(){
@@ -117,9 +118,11 @@ function CategoryController($scope, $location, CategoryFacade, $routeParams, ngP
         });        
     };
 
-    controller.createMessage = function(){
+    controller.createMessage = function(message){
+        controller.message = message;
         controller.showMessage = true;
         setTimeout(function(){
+            controller.message = null;
             controller.showMessage = false;
         }, 3000);
     };

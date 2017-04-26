@@ -18,10 +18,14 @@ function CategoryFactory($log) {
 
 
     function listCategoriesIn(response) {
-        var list = [];
-        if (response.data != undefined) {
-            response.data.forEach(function(category) {
-                list.push({
+        var result = {},
+            categories = [];
+        if (response.data != undefined
+            && response.data.body != undefined
+            && response.data.body.categoryTypes != null) {
+
+            response.data.body.categoryTypes.forEach(function(category) {
+                categories.push({
                     "id": category.id,
                     "name": category.name,
                     "description": category.description,
@@ -30,10 +34,15 @@ function CategoryFactory($log) {
                     "dateLastModification": category.dateLastModification
                 });
             });
+            result.categories = categories;
+        }else{
+            result = {
+                message: response.data.body.message
+            };
         }
 
        $log.info("Out of method = CategoryFactory.listarcategorysIn " + response);
-        return list;
+        return result;
     };
 
     function createCategoryOut(category) {
@@ -64,11 +73,16 @@ function CategoryFactory($log) {
     };
 
     function categoryIn(response) {
-        var retorno;
-        if (response.data != undefined) {
-            retorno = response.data;
+        var result = {};
+
+        if (response.data != undefined
+            && response.data.body != undefined
+            && response.data.body.categoryType != null) {
+            result = response.data.body;
+        }else{
+            result.message = response.data.body.message;
         }
-        return retorno;
+        return result;
     };
 
 
