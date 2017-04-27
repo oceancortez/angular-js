@@ -47,7 +47,7 @@ function CategoryService($http) {
 
         function deleteCategory(out) {
         console.log("Inside method = categoryService.deletecategory() @DELETE ");
-        return $http.delete("http://localhost/omc-pedidos-multi-jta-jndi-jpa-h-jersey-test-backend/category/delete?categoryId=" + out.codigo, {
+        return $http.delete("http://localhost/omc-pedidos-multi-jta-jndi-jpa-h-jersey-test-backend/category/delete?categoryId=" + out.id, {
             headers: _headersDelete
         });
     };

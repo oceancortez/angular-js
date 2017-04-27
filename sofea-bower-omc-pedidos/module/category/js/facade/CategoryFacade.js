@@ -1,3 +1,4 @@
+'use strict'
 angular.module('omc.category')
 
 .service('CategoryFacade', CategoryFacade);
@@ -31,13 +32,9 @@ function CategoryFacade(CategoryService, CategoryFactory, $q) {
         return $q(function(resolve, reject) {
             var out = CategoryFactory.createCategoryOut(category);
             CategoryService.createCategory(out).then(function(response) {
-                var result = CategoryFactory.categoryIn(response);
-                if (result) {
-                    resolve(result);
-                } else {
-                    result.error = result.message;
-                    reject(result);
-                }
+                resolve(CategoryFactory.categoryIn(response));
+            }, function error(response){
+                reject(response);
             });
         });
     };
@@ -46,13 +43,9 @@ function CategoryFacade(CategoryService, CategoryFactory, $q) {
         return $q(function(resolve, reject) {
             var out = CategoryFactory.updateCategoryOut(produto);
             CategoryService.updateCategory(out).then(function(response) {
-                var retorno = CategoryFactory.categoryIn(response);
-                if (retorno) {
-                    resolve(retorno);
-                } else {
-                    retorno.error = retorno.message;
-                    reject(retorno);
-                }
+                resolve(CategoryFactory.categoryIn(response));
+            }, function error(response){
+                reject(response);
             });
         });
     };
@@ -61,17 +54,12 @@ function CategoryFacade(CategoryService, CategoryFactory, $q) {
         return $q(function(resolve, reject) {
             var out = CategoryFactory.deleteCategoryOut(product);
             CategoryService.deleteCategory(out).then(function(response) {
-                var retorno = CategoryFactory.categoryIn(response);
-                if (retorno && (!(retorno.indexOf('REJECT') > 0))) {
-                    resolve(retorno);
-                } else {
-                    reject(retorno);
-                }
+                resolve(CategoryFactory.categoryIn(response));
             }, function error(response){
-                    reject(response.message);
+                    reject(response);
              });
         });
     };
 
 
-}
+};

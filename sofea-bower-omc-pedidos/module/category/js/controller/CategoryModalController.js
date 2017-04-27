@@ -29,7 +29,7 @@ angular.module('omc.category').controller('CategoryModalController', CategoryMod
 
      modal.update = function(category) {
        CategoryFacade.updateCategory(category).then(function (result){
-             if(result.productType){
+             if(result.categoryType){
                  modal.category = {};
                  modal.closeModal(result);
              }else{
