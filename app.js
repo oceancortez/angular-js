@@ -4,6 +4,7 @@ angular.module('omc', [
     'omc.pedido',
     'omc.product',
     'omc.category',
+    'omc.util',
     'ngProgress',
     'ui.bootstrap',
     'angularUtils.directives.dirPagination'

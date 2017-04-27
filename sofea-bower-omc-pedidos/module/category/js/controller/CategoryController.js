@@ -9,7 +9,7 @@ function CategoryController($scope, $location, CategoryFacade, $routeParams, ngP
  $filter, $uibModal, $log) {
 
     var controller = this;
-    controller.message = "";
+    controller.message = '';
     controller.showMessage = false;
     //Create a instance of progressbar
     controller.progressbar = ngProgressFactory.createInstance();
@@ -23,6 +23,11 @@ function CategoryController($scope, $location, CategoryFacade, $routeParams, ngP
     controller.isCategoryWasDeleted = false;
     controller.labelView = '';
 
+
+    controller.testMessage = function(){
+        controller.message = "Teste ok";
+        controller.showMessage = true;
+    };
 
     controller.showViews = function(view) {
         switch (view) {
