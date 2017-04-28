@@ -169,10 +169,12 @@ function ProductController($scope, $location, ProductFacade, $routeParams, ngPro
     };
 
     controller.buildCategory = function (){
-        for(var i = 0, len = controller.listCategories.length; i < len; i++){
-            if(controller.listCategories[i].id === controller.categoryId){
-                controller.category = controller.listCategories[i];
-                break;
+        if(controller.categoryId){
+            for(var i = 0, len = controller.listCategories.categories.length; i < len; i++){
+                if(controller.listCategories.categories[i].id === controller.categoryId){
+                    controller.category = controller.listCategories.categories[i];
+                    break;
+                }
             }
         }
     };
