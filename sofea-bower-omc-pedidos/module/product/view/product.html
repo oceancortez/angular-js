@@ -4,6 +4,13 @@
     <h1> > product</h1>
     {{$id}}
 
+    <div id="message"   ng-show="ProductCtrl.showMessage">
+        <message-alert-directive message="ProductCtrl.message"
+                                 data-ng-model="ProductCtrl.message">
+            {{$id}}
+        </message-alert-directive>
+    </div>
+
     <div class="btn-group" role="group">
         <button class="btn btn-success" ng-click="ProductCtrl.showViews('showCreate')"> 
             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> create product

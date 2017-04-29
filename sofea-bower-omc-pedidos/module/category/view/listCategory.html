@@ -1,9 +1,12 @@
 <!--Depois que eu comentei esse trecho, parou de dar erro no direcionamento de tela-->
 <!--data-ng-controller="ProductController as ProductCtrl"-->
 
-<div class="alert alert-danger fade in alert-dismissable" style="margin-top:18px;" ng-show="CategoryCtrl.showMessage">
-    <strong>Info! {{CategoryCtrl.message}}</strong>
-    <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">X</a>
+<div class="row">
+    <message-alert-directive message="CategoryCtrl.message"
+                             ng-show="CategoryCtrl.showMessage"
+                             data-ng-model="CategoryCtrl.message">
+        {{$id}}
+    </message-alert-directive>
 </div>
 
 <div class="row">

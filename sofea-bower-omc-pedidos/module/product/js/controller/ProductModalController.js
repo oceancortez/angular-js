@@ -1,10 +1,10 @@
 angular.module('omc.product').controller('ProductModalController', ProductModalController);
 
     ProductModalController.$inject = ['$uibModalInstance', '$filter', 'ProductFacade', 'product', 'showUpdate', 'showDelete',
-        'showCreate','categoryId', 'categories'];
+        'showCreate','categoryId', 'categories', 'category'];
 
     function ProductModalController($uibModalInstance, $filter, ProductFacade, product, showUpdate, showDelete, showCreate, categoryId,
-                                    categories){
+                                    categories, category){
 
         var modal = this;
         modal.product = product;
@@ -12,7 +12,7 @@ angular.module('omc.product').controller('ProductModalController', ProductModalC
         modal.showDelete = showDelete;
         modal.showCreate = showCreate;
         modal.categoryId = categoryId;
-        modal.category;
+        modal.category = category;
         modal.categories = {
             list: categories.list,
             categoryId: categoryId

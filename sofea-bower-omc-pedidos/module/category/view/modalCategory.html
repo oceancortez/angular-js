@@ -3,16 +3,16 @@
                 <button type="button" class="close" ng-click="CategoryModalCtrl.closeModal();" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title">{{CategoryModalCtrl.labelView}}</h4>
                 {{$id}}
-            </div>  
+            </div>
+
+
         <div class="modal-body">                        
                 <div class="row">
-                    <div class="col-sm-9 pager">
-
-                        <div class="alert alert-success fade in alert-dismissable" style="margin-top:18px;" ng-if="CategoryModalCtrl.showMessage">
-                            <strong>Info! {{CategoryModalCtrl.message}}</strong>
-                            <a href="#"  class="close" data-dismiss="alert" aria-label="close" title="close">X</a>
-                        </div>
-                    </div>
+                    <message-alert-directive message="CategoryModalCtrl.message"
+                                             ng-show="CategoryModalCtrl.showMessage"
+                                             data-ng-model="CategoryModalCtrl.message">
+                        {{$id}}
+                    </message-alert-directive>
                 </div>
                 <div class="row"> 
                         <form>

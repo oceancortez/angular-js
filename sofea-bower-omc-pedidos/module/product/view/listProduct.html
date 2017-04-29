@@ -1,15 +1,11 @@
 <!--Depois que eu comentei esse trecho, parou de dar erro no direcionamento de tela-->
 <!--data-ng-controller="ProductController as ProductCtrl"-->
 
-<div class="alert alert-danger fade in alert-dismissable" style="margin-top:18px;" ng-show="ProductCtrl.showMessage">
-    <strong>Info! {{ProductCtrl.message}}</strong>
-    <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">X</a>
-</div>
-
 <div class="row">
     <div class="col-md-4" data-ng-if="ProductCtrl.listCategories.categories.length">
         <label class="control-label">Category</label>
         <select class="form-control"
+                show-message="ProductCtrl.showMessage"
                 data-ng-options="category.name for category in ProductCtrl.listCategories.categories"
                 data-ng-model="ProductCtrl.category"
                 data-ng-change="ProductCtrl.loadProductsByCategoryId(ProductCtrl.category);">

@@ -7,6 +7,8 @@ angular.module('omc', [
     'omc.util',
     'ngProgress',
     'ui.bootstrap',
-    'angularUtils.directives.dirPagination'
+    'angularUtils.directives.dirPagination',
+    'ngMessages',
+    'ngAnimate'
 
 ]);

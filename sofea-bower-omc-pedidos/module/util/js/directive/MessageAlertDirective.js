@@ -5,8 +5,8 @@
 
 angular.module('omc.util')
 
-    .directive('messageAlertDirective',
-        function messageAlertDirective (){
+    .directive('messageAlertDirective',['$timeout',
+        function  ($timeout){
             return {
                 require: 'ngModel',
                 templateUrl: 'sofea-bower-omc-pedidos/module/util/view/messageAlert.html',
@@ -18,13 +18,20 @@ angular.module('omc.util')
                 },
                 transclude: true,
                 link: function(scope, element, attrs, ctrl){
-                    setTimeout(function(){
-                        scope.message = null;
-                        scope.showMessage = false;
-                    }, 3000);
+                    console.log(scope);
+
+                    element.bind("click", function () {
+                        console.log(scope);
+
+                    });
+
+                    //setTimeout(function(){
+                    //    scope.message = null;
+                    //    scope.showMessage = false;
+                    //}, 3000);
                 }
             };
-        });
+        }]);
 
 /*
 * restrict: "AE",

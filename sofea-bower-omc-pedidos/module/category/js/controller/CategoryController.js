@@ -22,11 +22,18 @@ function CategoryController($scope, $location, CategoryFacade, $routeParams, ngP
     controller.category = {};
     controller.isCategoryWasDeleted = false;
     controller.labelView = '';
-
+    controller.cont = 0;
 
     controller.testMessage = function(){
-        controller.message = "Teste ok";
-        controller.showMessage = true;
+        controller.cont++;
+        if(controller.cont % 2 === 0){
+            controller.message = "Teste ok";
+            controller.showMessage = true;
+        }else{
+            controller.message = "Teste ok";
+            controller.showMessage = false;
+        }
+
     };
 
     controller.showViews = function(view) {

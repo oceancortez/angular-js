@@ -28,3 +28,10 @@
 .ui-alert-message {
 	color: #AF4341;
 }
+
+.sample-show-hide {
+	transition: all linear 0.5s;
+}
+.sample-show-hide.ng-hide {
+	opacity: 0;
+}

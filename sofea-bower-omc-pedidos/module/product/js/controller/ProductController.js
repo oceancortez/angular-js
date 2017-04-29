@@ -49,23 +49,6 @@ function ProductController($scope, $location, ProductFacade, $routeParams, ngPro
         controller.showModalProduct();
     };
 
-    controller.buildListProducts = function() {
-        controller.loadingListProducts();
-        controller.sortBy = function(propertyName) {
-            controller.reverse = (controller.propertyName === propertyName) ? !controller.reverse : false;
-            controller.propertyName = propertyName;
-        }
-    };
-
-    controller.getAllProducts = function(){
-        return ProductFacade.listProducts().then(function(produtos) {
-            controller.products = produtos;
-            return controller.products; 
-        }, function error(response) {
-             return controller.products = []; 
-        });
-    };
-
     controller.listUpdate = function(product) {
         controller.product = product;
         controller.buildShowViews(true, false, true, false);
@@ -94,25 +77,28 @@ function ProductController($scope, $location, ProductFacade, $routeParams, ngPro
                     showCreate: controller.showCreate,
                     categoryId: (controller.categoryId == undefined ? null : controller.categoryId),
                     categories: {
-                        list: controller.listCategories
-                    }
+                        list: controller.listCategories.categories
+                    },
+                    category: angular.copy(controller.category)
                  }
             });
 
         return controller.modalInstance.result.then(function(result) {
              controller.loadProductsByCategoryId(result);
-             controller.showAlert(result, true);
-             controller.createMessage();
+             controller.createMessage(result.message);
              controller.showList = true;
              controller.modalInstance.close(result);
         }, function error(){
             $log.info('Modal dismissed at: ' + new Date());
+            controller.createMessage('error ao abrir o modal');
         });        
     };
 
-    controller.createMessage = function(){
+    controller.createMessage = function(message){
+        controller.message = message;
         controller.showMessage = true;
-        setTimeout(function(){
+        $timeout(function(){
+            controller.message = null;
             controller.showMessage = false;
         }, 3000);
     };
@@ -132,6 +118,7 @@ function ProductController($scope, $location, ProductFacade, $routeParams, ngPro
             };
         }else if(category.categoryId) {
             category.id = category.categoryId;
+            controller.getAllCategories();
 
         } else{
             category.id = controller.category.id;
@@ -141,14 +128,13 @@ function ProductController($scope, $location, ProductFacade, $routeParams, ngPro
         controller.categoryId = category.id;
         ProductFacade.listProductsByCategoryId(category.id).then(function(result){
             if(result.products){
-                controller.showAlert(result.message, false);
                 controller.products = result.products;
             }else{
-                controller.showAlert(result.message, true);
+                controller.createMessage(result.message);
             }
         }, function error(response){
             var message = 'Dont possible loading the categories >> ' + response.status + ' / ' + response.statusText;
-             controller.showAlert(message, true);
+            controller.createMessage(message);
         });
     };
 
@@ -159,13 +145,8 @@ function ProductController($scope, $location, ProductFacade, $routeParams, ngPro
             controller.buildCategory();
         }, function error(response){
             var message = 'Dont possible loading the categories >> ' + response.status + ' / ' + response.statusText;
-            controller.showAlert(message, true);
+            controller.createMessage(message);
         });
-    };
-
-    controller.showAlert = function (message, hide){
-        controller.message = message;
-        controller.showMessage = hide;
     };
 
     controller.buildCategory = function (){
