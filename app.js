@@ -9,6 +9,8 @@ angular.module('omc', [
     'ui.bootstrap',
     'angularUtils.directives.dirPagination',
     'ngMessages',
-    'ngAnimate'
+    'ngAnimate',
+    'ui.mask',
+    'ui.utils.masks'
 
 ]);

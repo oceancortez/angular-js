@@ -32,8 +32,8 @@
                                     <div class="col-sm-9">
                                         <div class="form-group">
                                             <label for="valor">Valor do product</label>
-                                            <input type="text" class="form-control" id="valor" data-ng-if="ProductModalCtrl.showDelete" readonly="readonly" placeholder="Valor" ng-model="ProductModalCtrl.product.valor">
-                                            <input type="text" class="form-control" id="valor" data-ng-if="(ProductModalCtrl.showUpdate || ProductModalCtrl.showCreate)" placeholder="Valor" ng-model="ProductModalCtrl.product.valor">
+                                            <input type="text" class="form-control" id="valor" ui-number-mask data-ng-if="ProductModalCtrl.showDelete" readonly="readonly" placeholder="Valor" ng-model="ProductModalCtrl.product.valor">
+                                            <input type="text" class="form-control" id="valor" ui-number-mask data-ng-if="(ProductModalCtrl.showUpdate || ProductModalCtrl.showCreate)" placeholder="Valor" ng-model="ProductModalCtrl.product.valor">
                                         </div>
                                     </div>
 
@@ -41,8 +41,8 @@
                                     <div class="col-sm-9">
                                         <div class="form-group">
                                             <label for="quantidade">Quantidade</label>
-                                            <input type="text" class="form-control" id="quantidade" data-ng-if="ProductModalCtrl.showDelete" readonly="readonly" placeholder="quantidade" ng-model="ProductModalCtrl.product.quantidade">
-                                            <input type="text" class="form-control" id="quantidade" data-ng-if="(ProductModalCtrl.showUpdate || ProductModalCtrl.showCreate)"  placeholder="quantidade" ng-model="ProductModalCtrl.product.quantidade">
+                                            <input type="text" class="form-control" id="quantidade"  data-ng-if="ProductModalCtrl.showDelete" readonly="readonly" ng-model="ProductModalCtrl.product.quantidade">
+                                            <input type="text" class="form-control" id="quantidade" ui-mask="9?9?9?9?9" uiMaskPlaceholder  data-ng-if="(ProductModalCtrl.showUpdate || ProductModalCtrl.showCreate)" ng-model="ProductModalCtrl.product.quantidade">
                                         </div>
                                     </div>
 
