@@ -22,15 +22,15 @@
                                     <div class="col-sm-9">
                                         <div class="form-group">
                                             <label class="label-control" for="product-id">id</label>
-                                            <input type="text" class="form-control" id="product-id" readonly="readonly" ng-model="CategoryModalCtrl.category.id">
+                                            <input type="text" class="form-control" id="product-id" readonly="readonly" data-ng-model="CategoryModalCtrl.category.id">
                                         </div>
                                     </div>
 
                                     <div class="col-sm-9">
                                         <div class="form-group">
                                             <label for="name">Nome do category</label>
-                                            <input type="text" class="form-control" id="name" data-ng-if="CategoryModalCtrl.showDelete" readonly="readonly" placeholder="name do category" ng-model="CategoryModalCtrl.category.name">
-                                            <input type="text" class="form-control" id="name" data-ng-if="(CategoryModalCtrl.showUpdate || CategoryModalCtrl.showCreate)" placeholder="name do category" ng-model="CategoryModalCtrl.category.name">
+                                            <input type="text"  class="form-control" id="name" data-ng-if="CategoryModalCtrl.showDelete" readonly="readonly" placeholder="name do category" ng-model="CategoryModalCtrl.category.name">
+                                            <input type="text" omc-form-valid class="form-control" id="name" data-ng-if="(CategoryModalCtrl.showUpdate || CategoryModalCtrl.showCreate)" placeholder="name do category" data-ng-model="CategoryModalCtrl.category.name">
                                         </div>
                                     </div>
 
@@ -39,7 +39,7 @@
                                         <div class="form-group">
                                             <label for="valor">description do category</label>
                                             <input type="text" class="form-control" id="description" data-ng-if="CategoryModalCtrl.showDelete" readonly="readonly" placeholder="description" ng-model="CategoryModalCtrl.category.description">
-                                            <input type="text" class="form-control" id="description" data-ng-if="(CategoryModalCtrl.showUpdate || CategoryModalCtrl.showCreate)" placeholder="description" ng-model="CategoryModalCtrl.category.description">
+                                            <input type="text" class="form-control" id="description" data-ng-if="(CategoryModalCtrl.showUpdate || CategoryModalCtrl.showCreate)" placeholder="description" data-ng-model="CategoryModalCtrl.category.description">
                                         </div>
                                     </div>
 
@@ -48,14 +48,14 @@
                                         <div class="form-group">
                                             <label for="quantidade">picture</label>
                                             <input type="text" class="form-control" id="picture" data-ng-if="CategoryModalCtrl.showDelete" readonly="readonly" placeholder="picture" ng-model="CategoryModalCtrl.category.picture">
-                                            <input type="text" class="form-control" id="picture" data-ng-if="(CategoryModalCtrl.showUpdate || CategoryModalCtrl.showCreate)"  placeholder="picture" ng-model="CategoryModalCtrl.category.picture">
+                                            <input type="text" class="form-control" id="picture" data-ng-if="(CategoryModalCtrl.showUpdate || CategoryModalCtrl.showCreate)"  placeholder="picture" data-ng-model="CategoryModalCtrl.category.picture">
                                         </div>
                                     </div>
 
                                     <div class="col-sm-9">
                                         <div class="form-group">
                                             <label for="dateCreate">Data de dateCreate</label>
-                                            <input type="date" class="form-control" id="dateCreate" data-ng-if="CategoryModalCtrl.showCreate"  placeholder="Data de dateCreate" ng-model="CategoryModalCtrl.category.dateCreate" ng-required="false">
+                                            <input type="date" class="form-control" id="dateCreate" data-ng-if="CategoryModalCtrl.showCreate"  placeholder="Data de dateCreate" data-ng-model="CategoryModalCtrl.category.dateCreate" ng-required="false">
                                             <input type="text"
                                                    class="form-control"
                                                    data-ng-if="(CategoryModalCtrl.showUpdate || CategoryModalCtrl.showDelete)"
