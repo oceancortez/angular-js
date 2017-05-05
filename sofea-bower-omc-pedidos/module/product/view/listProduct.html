@@ -32,40 +32,30 @@
                         <label>Search Product:</label>
                         <input type="text" ng-model="ProductCtrl.search" class="form-control" placeholder="Search...">
                     </div>
-                </form>
-                <table class="table table-striped">
-                    <tr>
-                        <th>
-                            <button class="btn btn-default glyphicon glyphicon-retweet" ng-click="ProductCtrl.sortBy('codigo')">Code</button>
-                            <span class="sortorder" ng-show="ProductCtrl.propertyName === 'codigo'" ng-class="{reverse: reverse}"></span>
-                        </th>
 
-                        <th>Name of Product</th>
-                        <th>Value</th>
-                        <th>Quantitie</th>
-                        <th>Date of Creation</th>
-                        <th>Date of Last Modification</th>
-                        <th>Actions</th>
-                    </tr>
-                    <tr dir-paginate="product in ProductCtrl.products
-                     | itemsPerPage:5
-                     | orderBy:ProductCtrl.propertyName:ProductCtrl.reverse
-                     | filter:ProductCtrl.search">
+                    <div>
+                        <ul class="w3-ul w3-card-4">
+                            <li class="w3-padding-16" dir-paginate="product in ProductCtrl.products
+                                                     | itemsPerPage:5
+                                                     | orderBy:ProductCtrl.propertyName:ProductCtrl.reverse
+                                                     | filter:ProductCtrl.search">
+                                <span  class="w3-button w3-white w3-xlarge w3-right">
 
-                        <td>{{product.codigo}}</td>
-                        <td>{{product.nome}}</td>
-                        <td> $ {{product.valor}}</td>
-                        <td>{{product.quantidade}}</td>
-                        <td>{{product.dataCadastro| date : "dd/MM/yyyy"}}</td>
-                        <td>{{product.dataUltimaAlteracao| date : "dd/MM/yyyy"}}</td>
-                        <td>
                             <button class="btn btn-warning" ng-click="ProductCtrl.listUpdate(product);"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span>Update</button>
                             <button class="btn btn-danger" data-ng-click="ProductCtrl.listDelete(product);"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Delete</button>
-                        </td>
-                        </td>
-                    </tr>
-                </table>
-                <dir-pagination-controls max-size="6" direction-links="true" boundary-links="true"></dir-pagination-controls>
+                                    </span>
+                                <img src="img_avatar2.png" class="w3-left w3-circle w3-margin-right" style="width:50px">
+                                <span class="w3-large">Id: {{product.codigo}}</span><br>
+                                <span class="w3-large">Name: {{product.nome}}</span><br>
+                                <span class="w3-large">Quantidade: {{product.quantidade}}</span><br>
+                                <span class="w3-large">Value: ${{product.valor}}</span><br>
+                                <span class="w3-large">Date of Created: {{product.dataCadastro | date : "dd/MM/yyyy"}}</span><br>
+                                <span class="w3-large">Date of Last Modification: {{product.dataUltimaAlteracao | date : "dd/MM/yyyy"}}</span><br>
+                            </li>
+                          </ul>
+                    </div>
+                    <dir-pagination-controls max-size="5" direction-links="true" boundary-links="true"></dir-pagination-controls>
+                </form>
             </div>
         </div>
     </div>

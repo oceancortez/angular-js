@@ -35,3 +35,38 @@
 .sample-show-hide.ng-hide {
 	opacity: 0;
 }
+
+.w3-button:hover{color:#000!important;background-color:#ccc!important}
+
+.w3-white,.w3-hover-white:hover{color:#000!important;background-color:#fff!important}
+
+.w3-ul{list-style-type:none;padding:0;margin:0}
+.w3-ul li{padding:8px 16px;border-bottom:1px solid #ddd}
+.w3-ul li:last-child{border-bottom:none}
+
+.w3-card-4,.w3-hover-shadow:hover{box-shadow:0 4px 10px 0 rgba(0,0,0,0.2),0 4px 20px 0 rgba(0,0,0,0.19)}
+
+.w3-padding-16{padding-top:16px!important;padding-bottom:16px!important}
+
+.w3-padding-24{padding-top:24px!important;padding-bottom:24px!important}
+
+.w3-xlarge{font-size:24px!important}
+
+.w3-xxlarge{font-size:36px!important}
+
+.w3-xxxlarge{font-size:48px!important}
+
+.w3-jumbo{font-size:64px!important}
+
+.w3-left{float:left!important}
+
+.w3-right{float:right!important}
+
+.w3-circle{border-radius:50%}
+
+.w3-margin-right{margin-right:16px!important}
+
+.w3-large{font-size:18px!important}
+
+
+
